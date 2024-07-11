@@ -14,6 +14,20 @@ public class FishingSet extends BaseEntity {
     private int fishCount;
     private int totalCost;
 
+    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, float fishWeight, int fishCount, int totalCost) {
+        this.name = name;
+        this.rod = rod;
+        this.reel = reel;
+        this.line = line;
+        this.lure = lure;
+        this.fishWeight = fishWeight;
+        this.fishCount = fishCount;
+        this.totalCost = totalCost;
+    }
+
+    protected FishingSet() {
+    }
+
     @Column
     public String getName() {
         return name;

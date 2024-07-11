@@ -11,6 +11,16 @@ public class Line extends BaseElementEntity {
     private float testWidth;
     private String color;
 
+    public Line(String type, float thickness, float testWidth, String color) {
+        this.type = type;
+        this.thickness = thickness;
+        this.testWidth = testWidth;
+        this.color = color;
+    }
+
+    protected Line() {
+    }
+
     @Column
     public String getType() {
         return type;

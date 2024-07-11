@@ -5,11 +5,20 @@ import jakarta.persistence.*;
 @Entity
 @Table
 public class Lure extends BaseElementEntity {
-    private String name;
     private String type;
     private int weight;
     private String hookSize;
     private String color;
+
+    public Lure(String type, int weight, String hookSize, String color) {
+        this.type = type;
+        this.weight = weight;
+        this.hookSize = hookSize;
+        this.color = color;
+    }
+
+    protected Lure() {
+    }
 
     @Column
     public String getType() {

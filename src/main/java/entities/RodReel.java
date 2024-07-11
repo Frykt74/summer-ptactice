@@ -9,13 +9,18 @@ public class RodReel {
     private Rod rod;
     private Reel reel;
 
+    public RodReel(RodReelId id, Rod rod, Reel reel) {
+        this.id = id;
+        this.rod = rod;
+        this.reel = reel;
+    }
+
+    protected RodReel() {
+    }
+
     @EmbeddedId
     public RodReelId getId() {
         return id;
-    }
-
-    public void setId(RodReelId id) {
-        this.id = id;
     }
 
     @ManyToOne

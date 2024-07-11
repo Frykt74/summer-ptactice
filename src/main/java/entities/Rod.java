@@ -24,6 +24,23 @@ public class Rod extends BaseElementEntity {
     //    Колец
     private int guides;
 
+    public Rod(String type, int length, float lureWeightMin, float lureWeightMax, String power, float lineWeightMin,
+               float lineWeightMax, String action, int pieces, int guides) {
+        this.type = type;
+        this.length = length;
+        this.lureWeightMin = lureWeightMin;
+        this.lureWeightMax = lureWeightMax;
+        this.power = power;
+        this.lineWeightMin = lineWeightMin;
+        this.lineWeightMax = lineWeightMax;
+        this.action = action;
+        this.pieces = pieces;
+        this.guides = guides;
+    }
+
+    protected Rod() {
+    }
+
     @Column
     public String getType() {
         return type;

@@ -19,6 +19,20 @@ public class Reel extends BaseElementEntity {
     private int ballBearings;
     private int weight;
 
+    public Reel(String type, String model, String gearRatio, int recovery, String lineCapacity, float maxDrag, int ballBearings, int weight) {
+        this.type = type;
+        this.model = model;
+        this.gearRatio = gearRatio;
+        this.recovery = recovery;
+        this.lineCapacity = lineCapacity;
+        this.maxDrag = maxDrag;
+        this.ballBearings = ballBearings;
+        this.weight = weight;
+    }
+
+    protected Reel() {
+    }
+
     @Column
     public String getType() {
         return type;
