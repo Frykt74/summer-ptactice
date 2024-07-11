@@ -4,31 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Lure {
-    private int id;
+public class Lure extends BaseElementEntity {
     private String name;
     private String type;
     private int weight;
     private String hookSize;
     private String color;
-    private int price;
-    private String description;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public int getId() {
-        return id;
-    }
-
-    @Column
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Column
     public String getType() {
@@ -64,23 +45,5 @@ public class Lure {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    @Column
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Column
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Reel {
-    private int id;
-    private String name;
+public class Reel extends BaseElementEntity {
     private String type;
     private String model;
     //    Передаточное Число
@@ -20,25 +18,6 @@ public class Reel {
     //    Подшипники
     private int ballBearings;
     private int weight;
-
-    private int price;
-    private String description;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public int getId() {
-        return id;
-    }
-
-    @Column
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Column
     public String getType() {
@@ -110,23 +89,5 @@ public class Reel {
 
     public void setWeight(int weight) {
         this.weight = weight;
-    }
-
-    @Column
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Column
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

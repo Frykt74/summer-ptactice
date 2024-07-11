@@ -4,32 +4,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Line {
-    private int id;
-    private String name;
+public class Line extends BaseElementEntity {
     private String type;
 //  Диаметр
     private float thickness;
     private float testWidth;
     private String color;
-    private int price;
-    private String description;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public int getId() {
-        return id;
-    }
-
-    @Column
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Column
     public String getType() {
@@ -65,23 +45,5 @@ public class Line {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    @Column
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    @Column
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

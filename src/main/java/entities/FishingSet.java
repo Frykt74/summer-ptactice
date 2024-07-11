@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class FishingSet {
-    private int id;
+public class FishingSet extends BaseEntity {
     private String name;
     private Rod rod;
     private Reel reel;
@@ -14,13 +13,6 @@ public class FishingSet {
     private float fishWeight;
     private int fishCount;
     private int totalCost;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    public int getId() {
-        return id;
-    }
 
     @Column
     public String getName() {
