@@ -13,6 +13,7 @@ public class FishingSet {
     private Lure lure;
     private float fishWeight;
     private int fishCount;
+    private int totalCost;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,5 +87,14 @@ public class FishingSet {
 
     public void setFishCount(int fishCount) {
         this.fishCount = fishCount;
+    }
+
+    @Column
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
     }
 }
