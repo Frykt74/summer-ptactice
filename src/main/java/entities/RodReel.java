@@ -3,7 +3,7 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "rod_reel")
 public class RodReel {
     private RodReelId id;
     private Rod rod;
@@ -25,7 +25,7 @@ public class RodReel {
 
     @ManyToOne
     @MapsId("rodId")
-    @JoinColumn
+    @JoinColumn(name = "rod_id")
     public Rod getRod() {
         return rod;
     }
@@ -36,7 +36,7 @@ public class RodReel {
 
     @ManyToOne
     @MapsId("reelId")
-    @JoinColumn
+    @JoinColumn(name = "reel_id")
     public Reel getReel() {
         return reel;
     }

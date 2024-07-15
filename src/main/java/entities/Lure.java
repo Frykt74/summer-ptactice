@@ -3,15 +3,13 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "lure")
 public class Lure extends BaseElementEntity {
-    private String type;
     private int weight;
     private String hookSize;
     private String color;
 
-    public Lure(String type, int weight, String hookSize, String color) {
-        this.type = type;
+    public Lure(int weight, String hookSize, String color) {
         this.weight = weight;
         this.hookSize = hookSize;
         this.color = color;
@@ -20,16 +18,7 @@ public class Lure extends BaseElementEntity {
     protected Lure() {
     }
 
-    @Column
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Column
+    @Column(name = "weight")
     public int getWeight() {
         return weight;
     }
@@ -38,7 +27,7 @@ public class Lure extends BaseElementEntity {
         this.weight = weight;
     }
 
-    @Column
+    @Column(name = "hook_size")
     public String getHookSize() {
         return hookSize;
     }
@@ -47,7 +36,7 @@ public class Lure extends BaseElementEntity {
         this.hookSize = hookSize;
     }
 
-    @Column
+    @Column(name = "color")
     public String getColor() {
         return color;
     }

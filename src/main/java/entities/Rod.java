@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 // Удилища
 @Entity
-@Table
+@Table(name = "rod")
 public class Rod extends BaseElementEntity {
     private String type;
     private int length;
@@ -19,13 +19,9 @@ public class Rod extends BaseElementEntity {
     private float lineWeightMax;
     //    Строй
     private String action;
-    //    Колен
-    private int pieces;
-    //    Колец
-    private int guides;
 
     public Rod(String type, int length, float lureWeightMin, float lureWeightMax, String power, float lineWeightMin,
-               float lineWeightMax, String action, int pieces, int guides) {
+               float lineWeightMax, String action) {
         this.type = type;
         this.length = length;
         this.lureWeightMin = lureWeightMin;
@@ -34,14 +30,12 @@ public class Rod extends BaseElementEntity {
         this.lineWeightMin = lineWeightMin;
         this.lineWeightMax = lineWeightMax;
         this.action = action;
-        this.pieces = pieces;
-        this.guides = guides;
     }
 
     protected Rod() {
     }
 
-    @Column
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -50,7 +44,7 @@ public class Rod extends BaseElementEntity {
         this.type = type;
     }
 
-    @Column
+    @Column(name = "length")
     public int getLength() {
         return length;
     }
@@ -59,7 +53,7 @@ public class Rod extends BaseElementEntity {
         this.length = length;
     }
 
-    @Column
+    @Column(name = "lure_weight_min")
     public float getLureWeightMin() {
         return lureWeightMin;
     }
@@ -68,7 +62,7 @@ public class Rod extends BaseElementEntity {
         this.lureWeightMin = lureWeightMin;
     }
 
-    @Column
+    @Column(name = "lure_weight_max")
     public float getLureWeightMax() {
         return lureWeightMax;
     }
@@ -77,7 +71,7 @@ public class Rod extends BaseElementEntity {
         this.lureWeightMax = lureWeightMax;
     }
 
-    @Column
+    @Column(name = "power")
     public String getPower() {
         return power;
     }
@@ -86,7 +80,7 @@ public class Rod extends BaseElementEntity {
         this.power = power;
     }
 
-    @Column
+    @Column(name = "line_weight_min")
     public float getLineWeightMin() {
         return lineWeightMin;
     }
@@ -95,7 +89,7 @@ public class Rod extends BaseElementEntity {
         this.lineWeightMin = lineWeightMin;
     }
 
-    @Column
+    @Column(name = "line_weight_max")
     public float getLineWeightMax() {
         return lineWeightMax;
     }
@@ -104,30 +98,12 @@ public class Rod extends BaseElementEntity {
         this.lineWeightMax = lineWeightMax;
     }
 
-    @Column
+    @Column(name = "action")
     public String getAction() {
         return action;
     }
 
     public void setAction(String action) {
         this.action = action;
-    }
-
-    @Column
-    public int getPieces() {
-        return pieces;
-    }
-
-    public void setPieces(int pieces) {
-        this.pieces = pieces;
-    }
-
-    @Column
-    public int getGuides() {
-        return guides;
-    }
-
-    public void setGuides(int guides) {
-        this.guides = guides;
     }
 }

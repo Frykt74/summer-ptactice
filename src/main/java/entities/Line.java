@@ -3,25 +3,27 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "line")
 public class Line extends BaseElementEntity {
     private String type;
 //  Диаметр
     private float thickness;
     private float testWidth;
     private String color;
+    private int length;
 
-    public Line(String type, float thickness, float testWidth, String color) {
+    public Line(String type, float thickness, float testWidth, String color, int length) {
         this.type = type;
         this.thickness = thickness;
         this.testWidth = testWidth;
         this.color = color;
+        this.length = length;
     }
 
     protected Line() {
     }
 
-    @Column
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -30,7 +32,7 @@ public class Line extends BaseElementEntity {
         this.type = type;
     }
 
-    @Column
+    @Column(name = "thickness")
     public float getThickness() {
         return thickness;
     }
@@ -39,7 +41,7 @@ public class Line extends BaseElementEntity {
         this.thickness = thickness;
     }
 
-    @Column
+    @Column(name = "test_width")
     public float getTestWidth() {
         return testWidth;
     }
@@ -48,12 +50,21 @@ public class Line extends BaseElementEntity {
         this.testWidth = testWidth;
     }
 
-    @Column
+    @Column(name = "color")
     public String getColor() {
         return color;
     }
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Column(name = "length")
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 }

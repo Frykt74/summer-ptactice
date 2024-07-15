@@ -1,9 +1,10 @@
 package entities;
 
 import jakarta.persistence.*;
+import services.RodReelService;
 
 @Entity
-@Table
+@Table(name = "fishing_set")
 public class FishingSet extends BaseEntity {
     private String name;
     private Rod rod;
@@ -14,7 +15,10 @@ public class FishingSet extends BaseEntity {
     private int fishCount;
     private int totalCost;
 
-    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, float fishWeight, int fishCount, int totalCost) {
+    @Transient
+    private RodReelService rodReelService;
+
+    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, float fishWeight, int fishCount) {
         this.name = name;
         this.rod = rod;
         this.reel = reel;
@@ -22,13 +26,14 @@ public class FishingSet extends BaseEntity {
         this.lure = lure;
         this.fishWeight = fishWeight;
         this.fishCount = fishCount;
-        this.totalCost = totalCost;
+        validateSet();
+        this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();;
     }
 
     protected FishingSet() {
     }
 
-    @Column
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -38,46 +43,50 @@ public class FishingSet extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "rod_id")
     public Rod getRod() {
         return rod;
     }
 
     public void setRod(Rod rod) {
         this.rod = rod;
+        calculateTotalCost();
     }
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "reel_id")
     public Reel getReel() {
         return reel;
     }
 
     public void setReel(Reel reel) {
         this.reel = reel;
+        calculateTotalCost();
     }
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "line_id")
     public Line getLine() {
         return line;
     }
 
     public void setLine(Line line) {
         this.line = line;
+        calculateTotalCost();
     }
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "lure_id")
     public Lure getLure() {
         return lure;
     }
 
     public void setLure(Lure lure) {
         this.lure = lure;
+        calculateTotalCost();
     }
 
-    @Column
+    @Column(name = "fish_weight")
     public float getFishWeight() {
         return fishWeight;
     }
@@ -86,7 +95,7 @@ public class FishingSet extends BaseEntity {
         this.fishWeight = fishWeight;
     }
 
-    @Column
+    @Column(name = "fish_count")
     public int getFishCount() {
         return fishCount;
     }
@@ -95,12 +104,30 @@ public class FishingSet extends BaseEntity {
         this.fishCount = fishCount;
     }
 
-    @Column
+    @Column(name = "total_cost")
     public int getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(int totalCost) {
-        this.totalCost = totalCost;
+    private void calculateTotalCost() {
+        this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();
+    }
+
+    private void validateSet() {
+        if (rod != null && reel != null) {
+            if (!rodReelService.existsRodAndReel(rod, reel)) {
+                throw new IllegalArgumentException("Эта комбинация удилища и катушки недопустима");
+            }
+        }
+        if (line != null && reel != null) {
+            if (line.getTestWidth() > reel.getMaxDrag()) {
+                throw new IllegalArgumentException("Нагрузка лески не должна превышать мощность фрикциона");
+            }
+        }
+        if (rod != null && lure != null) {
+            if (lure.getWeight() < rod.getLureWeightMin() || lure.getWeight() > rod.getLureWeightMax()) {
+                throw new IllegalArgumentException("Масса приманки должна быть в диапазоне теста удилища");
+            }
+        }
     }
 }

@@ -3,37 +3,29 @@ package entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "reel")
 public class Reel extends BaseElementEntity {
     private String type;
-    private String model;
     //    Передаточное Число
     private String gearRatio;
     //    Скорость Подмотки
     private int recovery;
-    //    Емкость Шпули
-    private String lineCapacity;
     //    Мощность Фрикциона
     private float maxDrag;
-    //    Подшипники
-    private int ballBearings;
     private int weight;
 
-    public Reel(String type, String model, String gearRatio, int recovery, String lineCapacity, float maxDrag, int ballBearings, int weight) {
+    public Reel(String type, String gearRatio, int recovery, float maxDrag, int weight) {
         this.type = type;
-        this.model = model;
         this.gearRatio = gearRatio;
         this.recovery = recovery;
-        this.lineCapacity = lineCapacity;
         this.maxDrag = maxDrag;
-        this.ballBearings = ballBearings;
         this.weight = weight;
     }
 
     protected Reel() {
     }
 
-    @Column
+    @Column(name = "type")
     public String getType() {
         return type;
     }
@@ -42,16 +34,7 @@ public class Reel extends BaseElementEntity {
         this.type = type;
     }
 
-    @Column
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    @Column
+    @Column(name = "gear_ratio")
     public String getGearRatio() {
         return gearRatio;
     }
@@ -60,7 +43,7 @@ public class Reel extends BaseElementEntity {
         this.gearRatio = gearRatio;
     }
 
-    @Column
+    @Column(name = "recovery")
     public int getRecovery() {
         return recovery;
     }
@@ -69,16 +52,7 @@ public class Reel extends BaseElementEntity {
         this.recovery = recovery;
     }
 
-    @Column
-    public String getLineCapacity() {
-        return lineCapacity;
-    }
-
-    public void setLineCapacity(String lineCapacity) {
-        this.lineCapacity = lineCapacity;
-    }
-
-    @Column
+    @Column(name = "max_drag")
     public float getMaxDrag() {
         return maxDrag;
     }
@@ -87,16 +61,7 @@ public class Reel extends BaseElementEntity {
         this.maxDrag = maxDrag;
     }
 
-    @Column
-    public int getBallBearings() {
-        return ballBearings;
-    }
-
-    public void setBallBearings(int ballBearings) {
-        this.ballBearings = ballBearings;
-    }
-
-    @Column
+    @Column(name = "weight")
     public int getWeight() {
         return weight;
     }
