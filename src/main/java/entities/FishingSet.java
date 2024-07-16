@@ -27,7 +27,8 @@ public class FishingSet extends BaseEntity {
         this.fishWeight = fishWeight;
         this.fishCount = fishCount;
         validateSet();
-        this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();;
+        this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();
+        ;
     }
 
     protected FishingSet() {
