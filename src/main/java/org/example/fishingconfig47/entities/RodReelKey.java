@@ -1,4 +1,4 @@
-package entities;
+package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.Embeddable;
 

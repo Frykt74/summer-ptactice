@@ -1,6 +1,6 @@
-package repositories;
+package org.example.fishingconfig47.repositories;
 
-import entities.Reel;
+import org.example.fishingconfig47.entities.Reel;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

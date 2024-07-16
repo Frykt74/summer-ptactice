@@ -1,6 +1,6 @@
-package repositories;
+package org.example.fishingconfig47.repositories;
 
-import entities.Rod;
+import org.example.fishingconfig47.entities.Rod;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

@@ -1,10 +1,10 @@
-package services;
+package org.example.fishingconfig47.services;
 
-import entities.Reel;
-import entities.Rod;
+import org.example.fishingconfig47.entities.Reel;
+import org.example.fishingconfig47.entities.Rod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.RodReelRepository;
+import org.example.fishingconfig47.repositories.RodReelRepository;
 
 @Service
 public class RodReelService {

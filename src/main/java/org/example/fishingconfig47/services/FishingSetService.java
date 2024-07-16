@@ -1,11 +1,11 @@
-package services;
+package org.example.fishingconfig47.services;
 
-import entities.FishingSet;
+import org.example.fishingconfig47.entities.FishingSet;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import org.example.fishingconfig47.repositories.FishingSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.FishingSetRepository;
 
 import java.util.Comparator;
 import java.util.List;

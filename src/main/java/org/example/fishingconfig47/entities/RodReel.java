@@ -1,4 +1,4 @@
-package entities;
+package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.*;
 
@@ -21,6 +21,10 @@ public class RodReel {
     @EmbeddedId
     public RodReelKey getId() {
         return id;
+    }
+
+    public void setId(RodReelKey id) {
+        this.id = id;
     }
 
     @ManyToOne

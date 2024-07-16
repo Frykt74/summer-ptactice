@@ -1,7 +1,7 @@
-package repositories;
+package org.example.fishingconfig47.repositories;
 
-import entities.FishingSet;
-import entities.Lure;
+import org.example.fishingconfig47.entities.FishingSet;
+import org.example.fishingconfig47.entities.Lure;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -10,12 +10,6 @@ import java.util.List;
 
 @Repository
 public interface FishingSetRepository {
-    void save(FishingSet fishingSet);
-
-    void update(FishingSet fishingSet);
-
-    void delete(Integer id);
-
     @Query("SELECT fs FROM FishingSet fs WHERE fs.id = :fishingSetId")
     Lure findSetById(@Param("fishing_set_id") Integer fishingSetId);
 
@@ -27,6 +21,5 @@ public interface FishingSetRepository {
 
     @Query("SELECT f FROM FishingSet f")
     List<FishingSet> findAll();
-
 }
 

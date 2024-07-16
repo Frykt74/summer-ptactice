@@ -1,18 +1,16 @@
-package controllers;
+package org.example.fishingconfig47.controllers;
 
-import DTO.FishingSetDto;
-import entities.*;
+import org.example.fishingconfig47.DTO.FishingSetDto;
+import org.example.fishingconfig47.entities.*;
+import org.example.fishingconfig47.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import services.*;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
-@RequestMapping("/api/fishing-sets")
+@RequestMapping("/fishing-sets")
 public class FishingSetController {
 
     private final FishingSetService fishingSetService;

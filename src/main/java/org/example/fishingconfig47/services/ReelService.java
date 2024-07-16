@@ -1,9 +1,9 @@
-package services;
+package org.example.fishingconfig47.services;
 
-import entities.Reel;
+import org.example.fishingconfig47.entities.Reel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.ReelRepository;
+import org.example.fishingconfig47.repositories.ReelRepository;
 
 @Service
 public class ReelService {

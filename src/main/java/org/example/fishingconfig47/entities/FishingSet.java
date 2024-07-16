@@ -1,7 +1,7 @@
-package entities;
+package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.*;
-import services.RodReelService;
+import org.example.fishingconfig47.services.RodReelService;
 
 @Entity
 @Table(name = "fishing_set")
@@ -19,6 +19,7 @@ public class FishingSet extends BaseEntity {
     private RodReelService rodReelService;
 
     public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount) {
+        validateSet();
         this.name = name;
         this.rod = rod;
         this.reel = reel;
@@ -26,7 +27,6 @@ public class FishingSet extends BaseEntity {
         this.lure = lure;
         this.fishWeight = fishWeight;
         this.fishCount = fishCount;
-        validateSet();
         this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();
     }
 
@@ -107,6 +107,10 @@ public class FishingSet extends BaseEntity {
     @Column(name = "total_cost")
     public int getTotalCost() {
         return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        calculateTotalCost();
     }
 
     private void calculateTotalCost() {
