@@ -11,7 +11,7 @@ public class ReelService {
     @Autowired
     private ReelRepository reelRepository;
 
-    public Reel getReelById(int id) {
+    public Reel getReelById(Integer id) {
         return reelRepository.findReelById(id);
     }
 }

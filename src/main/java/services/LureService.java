@@ -11,7 +11,7 @@ public class LureService {
     @Autowired
     private LureRepository lureRepository;
 
-    public Lure getLureById(int id) {
+    public Lure getLureById(Integer id) {
         return lureRepository.findLureById(id);
     }
 }

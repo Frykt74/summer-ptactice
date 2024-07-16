@@ -11,14 +11,14 @@ public class FishingSet extends BaseEntity {
     private Reel reel;
     private Line line;
     private Lure lure;
-    private float fishWeight;
-    private int fishCount;
-    private int totalCost;
+    private Float fishWeight;
+    private Integer fishCount;
+    private Integer totalCost;
 
     @Transient
     private RodReelService rodReelService;
 
-    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, float fishWeight, int fishCount) {
+    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount) {
         this.name = name;
         this.rod = rod;
         this.reel = reel;

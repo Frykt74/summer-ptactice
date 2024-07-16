@@ -11,7 +11,7 @@ public class RodService {
     @Autowired
     private RodRepository rodRepository;
 
-    public Rod getRodById(int id) {
+    public Rod getRodById(Integer id) {
         return rodRepository.findRodById(id);
     }
 }

@@ -11,7 +11,7 @@ public class LineService {
     @Autowired
     private LineRepository lineRepository;
 
-    public Line getLineById(int id) {
+    public Line getLineById(Integer id) {
         return lineRepository.findLineById(id);
     }
 }
