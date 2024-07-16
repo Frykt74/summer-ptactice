@@ -10,6 +10,10 @@ import java.util.List;
 
 @Repository
 public interface RodRepository {
+
+    @Query("SELECT r FROM Rod r WHERE r.id = :rod_id")
+    Rod findRodById(@Param("rod_id") int rod_id);
+
     @Query("SELECT r FROM Rod r WHERE :testWeight BETWEEN r.lineWeightMin AND r.lineWeightMax")
     List<Rod> findRodsByLineTest(@Param("testWeight") float testWeight);
 

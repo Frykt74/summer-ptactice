@@ -15,6 +15,6 @@ public class RodReelServiceImpl implements RodReelService {
 
     @Override
     public boolean existsRodAndReel(Rod rod, Reel reel) {
-        return rodReelRepository.existsRodAndReel(rod, reel);
+        return rodReelRepository.findByRodAndReel(rod, reel);
     }
 }

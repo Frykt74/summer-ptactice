@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "rod_reel")
 public class RodReel {
-    private RodReelId id;
+    private RodReelKey id;
     private Rod rod;
     private Reel reel;
 
-    public RodReel(RodReelId id, Rod rod, Reel reel) {
+    public RodReel(RodReelKey id, Rod rod, Reel reel) {
         this.id = id;
         this.rod = rod;
         this.reel = reel;
@@ -19,7 +19,7 @@ public class RodReel {
     }
 
     @EmbeddedId
-    public RodReelId getId() {
+    public RodReelKey getId() {
         return id;
     }
 

@@ -5,16 +5,16 @@ import jakarta.persistence.Embeddable;
 import java.util.Objects;
 
 @Embeddable
-public class RodReelId implements java.io.Serializable {
+public class RodReelKey implements java.io.Serializable {
     private int rodId;
     private int reelId;
 
-    public RodReelId(int rodId, int reelId) {
+    public RodReelKey(int rodId, int reelId) {
         this.rodId = rodId;
         this.reelId = reelId;
     }
 
-    public RodReelId() {
+    public RodReelKey() {
 
     }
 
@@ -38,8 +38,8 @@ public class RodReelId implements java.io.Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RodReelId rodReelId = (RodReelId) o;
-        return rodId == rodReelId.rodId && reelId == rodReelId.reelId;
+        RodReelKey rodReelKey = (RodReelKey) o;
+        return rodId == rodReelKey.rodId && reelId == rodReelKey.reelId;
     }
 
     @Override

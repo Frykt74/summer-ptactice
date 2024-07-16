@@ -128,6 +128,7 @@ public class FishingSet extends BaseEntity {
             if (lure.getWeight() < rod.getLureWeightMin() || lure.getWeight() > rod.getLureWeightMax()) {
                 throw new IllegalArgumentException("Масса приманки должна быть в диапазоне теста удилища");
             }
-        }
+        } else
+            throw new NullPointerException();
     }
 }
