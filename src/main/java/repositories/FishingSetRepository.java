@@ -14,10 +14,10 @@ public interface FishingSetRepository {
 
     void update(FishingSet fishingSet);
 
-    void delete(Long id);
+    void delete(Integer id);
 
     @Query("SELECT fs FROM FishingSet fs WHERE fs.id = :fishingSetId")
-    Lure findSetById(@Param("fishing_set_id") int fishingSetId);
+    Lure findSetById(@Param("fishing_set_id") Integer fishingSetId);
 
     @Query("SELECT fs FROM FishingSet fs WHERE fs.rod.name LIKE %:rodBrand% AND fs.reel.name LIKE %:reelBrand%")
     List<FishingSet> findSetsByRodAndReelBrand(@Param("rodBrand") String rodBrand, @Param("reelBrand") String reelBrand);
