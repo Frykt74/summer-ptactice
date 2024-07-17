@@ -13,13 +13,32 @@ public class FishingSet extends BaseEntity {
     private Lure lure;
     private Float fishWeight;
     private Integer fishCount;
-    private Integer totalCost;
 
     @Transient
     private RodReelService rodReelService;
 
-    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount) {
-        validateSet();
+//    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
+//        try {
+//            this.rodReelService = rodReelService;
+//            if (rod == null || reel == null || line == null || lure == null || fishWeight == null) {
+//                throw new NullPointerException();
+//            }
+//            validateSet(rod, reel, line, lure);
+//            this.name = name;
+//            this.rod = rod;
+//            this.reel = reel;
+//            this.line = line;
+//            this.lure = lure;
+//            this.fishWeight = fishWeight;
+//            this.fishCount = fishCount;
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
+        this.rodReelService = rodReelService;
         this.name = name;
         this.rod = rod;
         this.reel = reel;
@@ -27,7 +46,6 @@ public class FishingSet extends BaseEntity {
         this.lure = lure;
         this.fishWeight = fishWeight;
         this.fishCount = fishCount;
-        this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();
     }
 
     protected FishingSet() {
@@ -50,7 +68,6 @@ public class FishingSet extends BaseEntity {
 
     public void setRod(Rod rod) {
         this.rod = rod;
-        calculateTotalCost();
     }
 
     @ManyToOne
@@ -61,7 +78,6 @@ public class FishingSet extends BaseEntity {
 
     public void setReel(Reel reel) {
         this.reel = reel;
-        calculateTotalCost();
     }
 
     @ManyToOne
@@ -72,7 +88,6 @@ public class FishingSet extends BaseEntity {
 
     public void setLine(Line line) {
         this.line = line;
-        calculateTotalCost();
     }
 
     @ManyToOne
@@ -83,7 +98,6 @@ public class FishingSet extends BaseEntity {
 
     public void setLure(Lure lure) {
         this.lure = lure;
-        calculateTotalCost();
     }
 
     @Column(name = "fish_weight")
@@ -104,35 +118,19 @@ public class FishingSet extends BaseEntity {
         this.fishCount = fishCount;
     }
 
-    @Column(name = "total_cost")
-    public int getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(int totalCost) {
-        calculateTotalCost();
-    }
-
-    private void calculateTotalCost() {
-        this.totalCost = rod.getPrice() + reel.getPrice() + line.getPrice() + lure.getPrice();
-    }
-
-    private void validateSet() {
-        if (rod != null && reel != null) {
-            if (!rodReelService.existsRodAndReel(rod, reel)) {
-                throw new IllegalArgumentException("Эта комбинация удилища и катушки недопустима");
-            }
+    private void validateSet(Rod rod, Reel reel, Line line, Lure lure) {
+        if (fishWeight == null || fishCount == null || fishCount < 0 || fishWeight < 0) {
+            this.fishWeight = 0f;
+            this.fishCount = 0;
         }
-        if (line != null && reel != null) {
-            if (line.getTestWidth() > reel.getMaxDrag()) {
-                throw new IllegalArgumentException("Нагрузка лески не должна превышать мощность фрикциона");
-            }
+        if (!rodReelService.existsRodAndReel(rod, reel)) {
+            throw new IllegalArgumentException("Эта комбинация удилища и катушки недопустима");
         }
-        if (rod != null && lure != null) {
-            if (lure.getWeight() < rod.getLureWeightMin() || lure.getWeight() > rod.getLureWeightMax()) {
-                throw new IllegalArgumentException("Масса приманки должна быть в диапазоне теста удилища");
-            }
-        } else
-            throw new NullPointerException();
+        if (line.getTestWidth() > reel.getMaxDrag()) {
+            throw new IllegalArgumentException("Нагрузка лески не должна превышать мощность фрикциона");
+        }
+        if (lure.getWeight() < rod.getLureWeightMin() || lure.getWeight() > rod.getLureWeightMax()) {
+            throw new IllegalArgumentException("Масса приманки должна быть в диапазоне теста удилища");
+        }
     }
 }

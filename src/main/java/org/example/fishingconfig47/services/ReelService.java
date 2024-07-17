@@ -12,6 +12,6 @@ public class ReelService {
     private ReelRepository reelRepository;
 
     public Reel getReelById(Integer id) {
-        return reelRepository.findReelById(id);
+        return reelRepository.findById(id).get();
     }
 }

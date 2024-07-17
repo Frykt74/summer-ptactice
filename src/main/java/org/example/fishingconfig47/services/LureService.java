@@ -12,6 +12,6 @@ public class LureService {
     private LureRepository lureRepository;
 
     public Lure getLureById(Integer id) {
-        return lureRepository.findLureById(id);
+        return lureRepository.findById(id).get();
     }
 }

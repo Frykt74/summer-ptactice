@@ -8,16 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RodRepository {
-
-    @Query("SELECT r FROM Rod r WHERE r.id = :rod_id")
-    Rod findRodById(@Param("rod_id") int rod_id);
+public interface RodRepository extends GenericRepository<Rod, Integer> {
 
     @Query("SELECT r FROM Rod r WHERE :testWeight BETWEEN r.lineWeightMin AND r.lineWeightMax")
     List<Rod> findRodsByLineTest(@Param("testWeight") float testWeight);
-
-    @Query("SELECT DISTINCT rod FROM Rod rod JOIN FishingSet fs ON rod.id = fs.rod.id WHERE fs.totalCost < :totalCost")
-    List<Rod> findRodsInSetsCheaper(@Param("totalCost") int totalCost);
 
     @Query("SELECT rod FROM Rod rod JOIN FishingSet fs ON rod.id = fs.rod.id WHERE fs.fishWeight > :weight ORDER BY fs.fishWeight desc")
     List<Rod> findRodsInSetsWithFishWeight(@Param("weight") float weight);

@@ -9,10 +9,10 @@ import java.util.List;
 
 
 @Repository
-public interface LureRepository {
-    @Query("SELECT l FROM Lure l WHERE l.id = :lure_id")
-    Lure findLureById(@Param("lure_id") int lure_id);
-
+public interface LureRepository extends GenericRepository<Lure, Integer> {
     @Query("SELECT l FROM Lure l WHERE l.weight BETWEEN :weightMin AND :weightMax")
     List<Lure> findLuresByWeightRange(@Param("weightMin") float weightMin, @Param("weightMax") float weightMax);
+
+    @Query("SELECT l FROM Lure l WHERE l.price <= :budget AND l.weight BETWEEN :minWeight AND :maxWeight")
+    Lure findSuitableLure(@Param("minWeight") double minWeight, @Param("maxWeight") double maxWeight, @Param("budget") double budget);
 }

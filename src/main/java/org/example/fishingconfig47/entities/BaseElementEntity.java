@@ -18,7 +18,7 @@ public abstract class BaseElementEntity extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "description")
+    @Column(name = "description", length = 1024)
     public String getDescription() {
         return description;
     }

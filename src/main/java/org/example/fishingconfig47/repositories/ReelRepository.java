@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ReelRepository {
-    @Query("SELECT r FROM Reel r WHERE r.id = :reel_id")
-    Reel findReelById(@Param("reel_id") int reel_id);
-
+public interface ReelRepository extends GenericRepository<Reel, Integer> {
     @Query("SELECT r FROM Reel r WHERE r.gearRatio = :gearRatio AND r.maxDrag = :maxDrag")
     List<Reel> findReelsByGearRatioAndMaxDrag(@Param("gearRatio") String gearRatio, @Param("maxDrag") float maxDrag);
+
+    @Query("SELECT r FROM Reel r WHERE r.price <= :budget AND r.type = :rodType")
+    Reel findSuitableReel(@Param("rodType") String rodType, @Param("budget") double budget);
 }

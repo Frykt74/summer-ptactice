@@ -12,6 +12,6 @@ public class LineService {
     private LineRepository lineRepository;
 
     public Line getLineById(Integer id) {
-        return lineRepository.findLineById(id);
+        return lineRepository.findById(id).get();
     }
 }
