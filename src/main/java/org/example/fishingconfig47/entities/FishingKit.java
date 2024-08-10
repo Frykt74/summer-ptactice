@@ -5,7 +5,7 @@ import org.example.fishingconfig47.services.RodReelService;
 
 @Entity
 @Table(name = "fishing_set")
-public class FishingSet extends BaseEntity {
+public class FishingKit extends BaseEntity {
     private String name;
     private Rod rod;
     private Reel reel;
@@ -17,7 +17,7 @@ public class FishingSet extends BaseEntity {
     @Transient
     private RodReelService rodReelService;
 
-//    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
+//    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
 //        try {
 //            this.rodReelService = rodReelService;
 //            if (rod == null || reel == null || line == null || lure == null || fishWeight == null) {
@@ -37,7 +37,7 @@ public class FishingSet extends BaseEntity {
 //        }
 //    }
 
-    public FishingSet(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
+    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
         this.rodReelService = rodReelService;
         this.name = name;
         this.rod = rod;
@@ -48,7 +48,7 @@ public class FishingSet extends BaseEntity {
         this.fishCount = fishCount;
     }
 
-    protected FishingSet() {
+    protected FishingKit() {
     }
 
     @Column(name = "name")
