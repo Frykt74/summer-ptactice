@@ -6,10 +6,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "lure")
-public class Lure extends BaseElementEntity {
+public class Lure extends BaseEntity {
     private int weight;
     private String hookSize;
     private String color;
+    private String description;
+    private int price;
 
     public Lure(int weight, String hookSize, String color) {
         this.weight = weight;
@@ -45,5 +47,23 @@ public class Lure extends BaseElementEntity {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    @Column(name = "description", length = 1024)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Column(name = "price")
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

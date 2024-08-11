@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "reel")
-public class Reel extends BaseElementEntity {
+public class Reel extends BaseEntity {
     private String type;
     //    Передаточное Число
     private String gearRatio;
@@ -15,6 +15,8 @@ public class Reel extends BaseElementEntity {
     //    Мощность Фрикциона
     private float maxDrag;
     private int weight;
+    private String description;
+    private int price;
 
     public Reel(String type, String gearRatio, int recovery, float maxDrag, int weight) {
         this.type = type;
@@ -70,5 +72,23 @@ public class Reel extends BaseElementEntity {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Column(name = "description", length = 1024)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Column(name = "price")
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

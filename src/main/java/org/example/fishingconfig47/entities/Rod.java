@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 // Удилища
 @Entity
 @Table(name = "rod")
-public class Rod extends BaseElementEntity {
+public class Rod extends BaseEntity {
     private String type;
     private int length;
     //    Тест (Вес приманки)
@@ -21,6 +21,8 @@ public class Rod extends BaseElementEntity {
     private float lineWeightMax;
     //    Строй
     private String action;
+    private String description;
+    private int price;
 
     public Rod(String type, int length, float lureWeightMin, float lureWeightMax, String power, float lineWeightMin,
                float lineWeightMax, String action) {
@@ -107,5 +109,23 @@ public class Rod extends BaseElementEntity {
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    @Column(name = "description", length = 1024)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Column(name = "price")
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -6,13 +6,15 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "line")
-public class Line extends BaseElementEntity {
+public class Line extends BaseEntity {
     private String type;
 //  Диаметр
     private float thickness;
     private float testWidth;
     private String color;
     private int length;
+    private String description;
+    private int price;
 
     public Line(String type, float thickness, float testWidth, String color, int length) {
         this.type = type;
@@ -68,5 +70,23 @@ public class Line extends BaseElementEntity {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    @Column(name = "description", length = 1024)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Column(name = "price")
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
