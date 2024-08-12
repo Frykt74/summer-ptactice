@@ -7,49 +7,13 @@ import org.example.fishingconfig47.repositories.IRepository.IFishingKitRepositor
 
 import java.util.List;
 
-public class FishingKitRepositoryImpl implements IFishingKitRepository {
+public class FishingKitRepositoryImpl extends CustomCrudRepositoryImpl<FishingKit, Integer> implements IFishingKitRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
-    public void delete(FishingKit entity) {
-        if (entityManager.contains(entity)) {
-            entityManager.remove(entity);
-        } else {
-            entityManager.remove(entityManager.merge(entity));
-        }
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        FishingKit entity = findById(id);
-        if (entity != null) {
-            delete(entity);
-        }
-    }
-
-    @Override
-    public FishingKit findById(Integer id) {
-        return entityManager.find(FishingKit.class, id);
-    }
-
-    @Override
-    public List<FishingKit> findAll() {
-        return entityManager.createQuery("from FishingKit", FishingKit.class).getResultList();
-    }
-
-    @Override
-    public List<FishingKit> findByName(String name) {
-        String jpql = "SELECT fk FROM FishingKit fk WHERE fk.name = :name";
-        return entityManager.createQuery(jpql, FishingKit.class)
-                .setParameter("name", name)
-                .getResultList();
-    }
-
-    @Override
-    public <S extends FishingKit> S update(S entity) {
-        return entityManager.merge(entity);
+    protected FishingKitRepositoryImpl() {
+        super(FishingKit.class);
     }
 
     @Override
@@ -62,12 +26,13 @@ public class FishingKitRepositoryImpl implements IFishingKitRepository {
     }
 
     @Override
-    public <S extends FishingKit> S save(S entity) {
-        if (entity.getId() == null) {
-            entityManager.persist(entity);
-            return entity;
-        } else {
-            return entityManager.merge(entity);
-        }
+    public List<FishingKit> findFishingKitsByLureName(String name, String color) {
+        String jpql = "SELECT fs FROM FishingKit fs WHERE fs.lure.name = :name AND fs.lure.color = :color " +
+                "ORDER BY fs.fishWeight DESC, fs.fishCount DESC";
+        return entityManager.createQuery(jpql, FishingKit.class)
+                .setParameter("name", name)
+                .setParameter("color", color)
+                .getResultList();
     }
+
 }

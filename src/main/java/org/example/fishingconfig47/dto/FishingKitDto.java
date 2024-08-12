@@ -1,4 +1,4 @@
-package org.example.fishingconfig47.DTO;
+package org.example.fishingconfig47.dto;
 
 public class FishingKitDto {
     private String name;
