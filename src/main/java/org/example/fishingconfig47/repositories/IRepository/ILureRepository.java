@@ -5,8 +5,12 @@ import org.example.fishingconfig47.repositories.GenericRepository.CreateReposito
 import org.example.fishingconfig47.repositories.GenericRepository.ReadRepository;
 import org.example.fishingconfig47.repositories.GenericRepository.UpdateRepository;
 
+import java.util.List;
+
 public interface ILureRepository extends
         CreateRepository<Lure, Integer>,
         ReadRepository<Lure, Integer>,
         UpdateRepository<Lure, Integer> {
+    List<Lure> findLuresByWeight(float weightMin, float weightMax);
+    Lure findSuitableLure(double minWeight, double maxWeight, double budget);
 }
