@@ -17,8 +17,11 @@ public class Reel extends BaseEntity {
     private int weight;
     private String description;
     private int price;
+    private String name;
 
-    public Reel(String type, String gearRatio, int recovery, float maxDrag, int weight) {
+
+    public Reel(String name, String type, String gearRatio, int recovery, float maxDrag, int weight) {
+        this.name = name;
         this.type = type;
         this.gearRatio = gearRatio;
         this.recovery = recovery;
@@ -90,5 +93,14 @@ public class Reel extends BaseEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

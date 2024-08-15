@@ -1,30 +1,23 @@
 package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.*;
+import org.example.fishingconfig47.services.RodReelService;
 
 @Entity
 @Table(name = "rod_reel")
-public class RodReel {
-    private RodReelKey id;
+public class RodReel extends BaseEntity {
     private Rod rod;
     private Reel reel;
 
-    public RodReel(RodReelKey id, Rod rod, Reel reel) {
-        this.id = id;
-        this.rod = rod;
-        this.reel = reel;
+    @Transient
+    private RodReelService rodReelService;
+
+    public RodReel(Rod rod, Reel reel) {
+        setRod(rod, reel);
+        setReel(reel);
     }
 
     protected RodReel() {
-    }
-
-    @EmbeddedId
-    public RodReelKey getId() {
-        return id;
-    }
-
-    public void setId(RodReelKey id) {
-        this.id = id;
     }
 
     @ManyToOne
@@ -34,7 +27,10 @@ public class RodReel {
         return rod;
     }
 
-    public void setRod(Rod rod) {
+    public void setRod(Rod rod, Reel reel) {
+        if (rodReelService.existsPairOfRodAndReel(rod, reel)) {
+            throw new IllegalArgumentException("Rod and Reel already exists");
+        }
         this.rod = rod;
     }
 

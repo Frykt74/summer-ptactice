@@ -15,8 +15,11 @@ public class Line extends BaseEntity {
     private int length;
     private String description;
     private int price;
+    private String name;
 
-    public Line(String type, float thickness, float testWidth, String color, int length) {
+
+    public Line(String name, String type, float thickness, float testWidth, String color, int length) {
+        this.name = name;
         this.type = type;
         this.thickness = thickness;
         this.testWidth = testWidth;
@@ -88,5 +91,14 @@ public class Line extends BaseEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

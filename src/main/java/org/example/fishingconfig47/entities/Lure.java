@@ -12,8 +12,11 @@ public class Lure extends BaseEntity {
     private String color;
     private String description;
     private int price;
+    private String name;
 
-    public Lure(int weight, String hookSize, String color) {
+
+    public Lure(String name, int weight, String hookSize, String color) {
+        this.name = name;
         this.weight = weight;
         this.hookSize = hookSize;
         this.color = color;
@@ -65,5 +68,14 @@ public class Lure extends BaseEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
