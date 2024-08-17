@@ -17,27 +17,8 @@ public class FishingKit extends BaseEntity {
     @Transient
     private RodReelService rodReelService;
 
-//    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
-//        try {
-//            this.rodReelService = rodReelService;
-//            if (rod == null || reel == null || line == null || lure == null || fishWeight == null) {
-//                throw new NullPointerException();
-//            }
-//            validateSet(rod, reel, line, lure);
-//            this.name = name;
-//            this.rod = rod;
-//            this.reel = reel;
-//            this.line = line;
-//            this.lure = lure;
-//            this.fishWeight = fishWeight;
-//            this.fishCount = fishCount;
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight, Integer fishCount, RodReelService rodReelService) {
+    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure,Float fishWeight,
+                      Integer fishCount,RodReelService rodReelService) {
         this.rodReelService = rodReelService;
         setName(name);
         setRod(rod, reel);
@@ -144,20 +125,4 @@ public class FishingKit extends BaseEntity {
         }
         this.fishCount = fishCount;
     }
-
-//    private void validateSet(Rod rod, Reel reel, Line line, Lure lure) {
-//        if (fishWeight == null || fishCount == null || fishCount < 0 || fishWeight < 0) {
-//            this.fishWeight = 0f;
-//            this.fishCount = 0;
-//        }
-//        if (!rodReelService.existsRodAndReel(rod, reel)) {
-//            throw new IllegalArgumentException("Эта комбинация удилища и катушки недопустима");
-//        }
-//        if (line.getTestWidth() > reel.getMaxDrag()) {
-//            throw new IllegalArgumentException("Нагрузка лески не должна превышать мощность фрикциона");
-//        }
-//        if (lure.getWeight() < rod.getLureWeightMin() || lure.getWeight() > rod.getLureWeightMax()) {
-//            throw new IllegalArgumentException("Масса приманки должна быть в диапазоне теста удилища");
-//        }
-//    }
 }
