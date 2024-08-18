@@ -28,7 +28,7 @@ public class FishingKitRepositoryImpl extends CustomCrudRepositoryImpl<FishingKi
     }
 
     @Override
-    public List<FishingKit> findFishingKitsByLureName(String name, String color) {
+    public List<FishingKit> findFishingKitsByLureNameAndLureColor(String name, String color) {
         String jpql = "SELECT fs FROM FishingKit fs WHERE fs.lure.name = :name AND fs.lure.color = :color " +
                 "ORDER BY fs.fishWeight DESC, fs.fishCount DESC";
         return entityManager.createQuery(jpql, FishingKit.class)
@@ -36,5 +36,4 @@ public class FishingKitRepositoryImpl extends CustomCrudRepositoryImpl<FishingKi
                 .setParameter("color", "%" + color +"%")
                 .getResultList();
     }
-
 }

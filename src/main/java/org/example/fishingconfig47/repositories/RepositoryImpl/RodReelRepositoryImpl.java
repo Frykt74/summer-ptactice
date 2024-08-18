@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class RodReelRepositoryImpl extends CustomCrudRepositoryImpl<RodReel, Integer> implements IRodReelRepository {
-    protected RodReelRepositoryImpl(Class<RodReel> entityClass) {
-        super(entityClass);
+    protected RodReelRepositoryImpl() {
+        super(RodReel.class);
     }
 //    TODO: add validation condition for record creation
 

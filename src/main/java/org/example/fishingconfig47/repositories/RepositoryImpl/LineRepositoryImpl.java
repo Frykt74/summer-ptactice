@@ -14,8 +14,8 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
     @PersistenceContext
     private EntityManager entityManager;
 
-    protected LineRepositoryImpl(Class<Line> entityClass) {
-        super(entityClass);
+    protected LineRepositoryImpl() {
+        super(Line.class);
     }
 
     @Override

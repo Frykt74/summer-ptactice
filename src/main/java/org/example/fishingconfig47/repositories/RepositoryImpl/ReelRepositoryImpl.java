@@ -4,13 +4,15 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.fishingconfig47.entities.Reel;
 import org.example.fishingconfig47.repositories.IRepository.IReelRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> implements IReelRepository {
 
-    protected ReelRepositoryImpl(Class<Reel> entityClass) {
-        super(entityClass);
+    protected ReelRepositoryImpl() {
+        super(Reel.class);
     }
 
     @PersistenceContext

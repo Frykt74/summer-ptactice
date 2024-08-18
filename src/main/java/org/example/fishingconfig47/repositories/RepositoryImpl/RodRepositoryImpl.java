@@ -4,9 +4,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.fishingconfig47.entities.Rod;
 import org.example.fishingconfig47.repositories.IRepository.IRodRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class RodRepositoryImpl extends CustomCrudRepositoryImpl<Rod, Integer> implements IRodRepository {
 
     @PersistenceContext
