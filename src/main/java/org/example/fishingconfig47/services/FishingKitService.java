@@ -35,6 +35,8 @@ public class FishingKitService {
         this.lineRepository = lineRepository;
         this.lureRepository = lureRepository;
         this.modelMapper = modelMapper;
+
+//        configureModelMapper();
     }
 
     public FishingKitDto createFishingKit(FishingKitDto fishingKitDto) {
@@ -84,4 +86,25 @@ public class FishingKitService {
     private FishingKitDto convertToDto(FishingKit fishingKit) {
         return modelMapper.map(fishingKit, FishingKitDto.class);
     }
+
+//    private void configureModelMapper() {
+//        modelMapper.createTypeMap(FishingKitDto.class, FishingKit.class)
+//                .addMappings(new PropertyMap<FishingKitDto, FishingKit>() {
+//                    @Override
+//                    protected void configure() {
+//                        map().setName(source.getName());
+//                        map().setFishWeight(source.getFishWeight());
+//                        map().setFishCount(source.getFishCount());
+//
+//                        using(ctx -> rodRepository.findById(source.getRodId()))
+//                                .map(source, destination.getRod());
+//                        using(ctx -> reelRepository.findById(source.getReelId()))
+//                                .map(source, destination.getReel());
+//                        using(ctx -> lineRepository.findById(source.getLineId()))
+//                                .map(source, destination.getLine());
+//                        using(ctx -> lureRepository.findById(source.getLureId()))
+//                                .map(source, destination.getLure());
+//                    }
+//                });
+//    }
 }
