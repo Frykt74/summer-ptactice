@@ -9,6 +9,19 @@ public class FishingKitDto {
     private Float fishWeight;
     private Integer fishCount;
 
+    public FishingKitDto(String name, Integer rodId, Integer reelId, Integer lineId, Integer lureId, Float fishWeight, Integer fishCount) {
+        this.name = name;
+        this.rodId = rodId;
+        this.reelId = reelId;
+        this.lineId = lineId;
+        this.lureId = lureId;
+        this.fishWeight = fishWeight;
+        this.fishCount = fishCount;
+    }
+
+    protected FishingKitDto() {
+    }
+
     public String getName() {
         return name;
     }
