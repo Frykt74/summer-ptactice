@@ -21,10 +21,13 @@ public class RodReel extends BaseEntity {
     }
 
     @ManyToOne
-    @MapsId("rodId")
     @JoinColumn(name = "rod_id")
     public Rod getRod() {
         return rod;
+    }
+
+    protected void setRod(Rod rod) {
+        this.rod = rod;
     }
 
     public void setRod(Rod rod, Reel reel) {
@@ -35,7 +38,6 @@ public class RodReel extends BaseEntity {
     }
 
     @ManyToOne
-    @MapsId("reelId")
     @JoinColumn(name = "reel_id")
     public Reel getReel() {
         return reel;
