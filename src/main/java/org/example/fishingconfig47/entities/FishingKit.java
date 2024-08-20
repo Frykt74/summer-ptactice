@@ -28,8 +28,8 @@ public class FishingKit extends BaseEntity {
         setFishWeight(fishWeight);
         setFishCount(fishCount);
     }
-
-    protected FishingKit() {
+//TODO
+    public FishingKit() {
     }
 
     @Column(name = "name")
@@ -50,6 +50,10 @@ public class FishingKit extends BaseEntity {
         return rod;
     }
 
+    protected void setRod(Rod rod) {
+        this.rod = rod;
+    }
+
     public void setRod(Rod rod, Reel reel) {
         if (rod == null) {
             throw new IllegalArgumentException("Rod cannot be null");
@@ -63,6 +67,10 @@ public class FishingKit extends BaseEntity {
     @JoinColumn(name = "reel_id")
     public Reel getReel() {
         return reel;
+    }
+
+    protected void setReel(Reel reel) {
+        this.reel = reel;
     }
 
     public void setReel(Reel reel, Line line) {
@@ -91,6 +99,10 @@ public class FishingKit extends BaseEntity {
     @JoinColumn(name = "lure_id")
     public Lure getLure() {
         return lure;
+    }
+
+    protected void setLure(Lure lure) {
+        this.lure = lure;
     }
 
     public void setLure(Lure lure, Rod rod) {
