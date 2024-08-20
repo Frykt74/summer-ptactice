@@ -13,6 +13,9 @@ public class RodReelService {
     private RodReelRepositoryImpl rodReelRepository;
 
     public boolean existsPairOfRodAndReel(Rod rod, Reel reel) {
-        return rodReelRepository.existsRodAndReel(rod, reel);
+        if (!rodReelRepository.existsRodAndReel(rod, reel)) {
+            throw new IllegalArgumentException("The rod and reel doesn't exist");
+        }
+        return true;
     }
 }
