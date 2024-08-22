@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class LureService {
 
+    private final LureRepository lureRepository;
+
     @Autowired
-    private LureRepository lureRepository;
+    public LureService(LureRepository lureRepository) {
+        this.lureRepository = lureRepository;
+    }
 
     public Lure getLureById(Integer id) {
         return lureRepository.findById(id);

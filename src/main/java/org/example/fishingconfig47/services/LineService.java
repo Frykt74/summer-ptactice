@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class LineService {
 
+    private final LineRepository lineRepository;
+
     @Autowired
-    private LineRepository lineRepository;
+    public LineService(LineRepository lineRepository) {
+        this.lineRepository = lineRepository;
+    }
 
     public Line getLineById(Integer id) {
         return lineRepository.findById(id);

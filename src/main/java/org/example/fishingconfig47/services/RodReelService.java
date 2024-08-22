@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class RodReelService {
 
+    private final RodReelRepository rodReelRepository;
+
     @Autowired
-    private RodReelRepository rodReelRepository;
+    public RodReelService(RodReelRepository rodReelRepository) {
+        this.rodReelRepository = rodReelRepository;
+    }
 
     public boolean existsPairOfRodAndReel(Rod rod, Reel reel) {
         if (!rodReelRepository.existsRodAndReel(rod, reel)) {

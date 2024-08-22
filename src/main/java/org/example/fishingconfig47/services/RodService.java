@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class RodService {
 
+    private final RodRepository rodRepository;
+
     @Autowired
-    private RodRepository rodRepository;
+    public RodService(RodRepository rodRepository) {
+        this.rodRepository = rodRepository;
+    }
 
     public Rod getRodById(Integer id) {
         return rodRepository.findById(id);

@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReelService {
 
+    private final ReelRepository reelRepository;
+
     @Autowired
-    private ReelRepository reelRepository;
+    public ReelService(ReelRepository reelRepository) {
+        this.reelRepository = reelRepository;
+    }
 
     public Reel getReelById(Integer id) {
         return reelRepository.findById(id);
