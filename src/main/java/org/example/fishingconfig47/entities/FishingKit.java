@@ -14,22 +14,19 @@ public class FishingKit extends BaseEntity {
     private Float fishWeight;
     private Integer fishCount;
 
-    @Transient
-    private RodReelService rodReelService;
 
     public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure,Float fishWeight,
-                      Integer fishCount,RodReelService rodReelService) {
-        this.rodReelService = rodReelService;
+                      Integer fishCount) {
         setName(name);
-        setRod(rod, reel);
+        setRod(rod);
         setReel(reel, line);
         setLine(line);
         setLure(lure, rod);
         setFishWeight(fishWeight);
         setFishCount(fishCount);
     }
-//TODO
-    public FishingKit() {
+
+    protected FishingKit() {
     }
 
     @Column(name = "name")
@@ -50,16 +47,7 @@ public class FishingKit extends BaseEntity {
         return rod;
     }
 
-    protected void setRod(Rod rod) {
-        this.rod = rod;
-    }
-
-    public void setRod(Rod rod, Reel reel) {
-        if (rod == null) {
-            throw new IllegalArgumentException("Rod cannot be null");
-        } else if (!rodReelService.existsPairOfRodAndReel(rod, reel)) {
-            throw new IllegalArgumentException("Pair of Rod and Reel cannot be found");
-        }
+    public void setRod(Rod rod) {
         this.rod = rod;
     }
 
