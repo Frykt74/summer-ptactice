@@ -20,6 +20,7 @@ public class FishingKitService {
     private final LineRepositoryImpl lineRepository;
     private final LureRepositoryImpl lureRepository;
     private final ModelMapper modelMapper;
+    private final RodReelService rodReelService;
 
     @Autowired
     public FishingKitService(
@@ -28,12 +29,14 @@ public class FishingKitService {
             ReelRepositoryImpl reelRepository,
             LineRepositoryImpl lineRepository,
             LureRepositoryImpl lureRepository,
+            RodReelService rodReelService,
             ModelMapper modelMapper) {
         this.fishingKitRepository = fishingKitRepository;
         this.rodRepository = rodRepository;
         this.reelRepository = reelRepository;
         this.lineRepository = lineRepository;
         this.lureRepository = lureRepository;
+        this.rodReelService = rodReelService;
         this.modelMapper = modelMapper;
 
 //        configureModelMapper();
@@ -59,12 +62,14 @@ public class FishingKitService {
         FishingKit fishingKit = modelMapper.map(fishingKitDto, FishingKit.class);
 
         Rod rod = rodRepository.findById(fishingKitDto.getRodId());
-        if (rod == null) {
-            throw new IllegalArgumentException("Invalid Rod ID");
-        }
         Reel reel = reelRepository.findById(fishingKitDto.getReelId());
         if (reel == null) {
             throw new IllegalArgumentException("Invalid Reel ID");
+        }
+        if (rod == null) {
+            throw new IllegalArgumentException("Rod cannot be null");
+        } else if (!rodReelService.existsPairOfRodAndReel(rod, reel)) {
+            throw new IllegalArgumentException("Pair of Rod and Reel cannot be found");
         }
         Line line = lineRepository.findById(fishingKitDto.getLineId());
         if (line == null) {
@@ -75,7 +80,9 @@ public class FishingKitService {
             throw new IllegalArgumentException("Invalid Lure ID");
         }
 
-        fishingKit.setRod(rod, reel);
+
+
+        fishingKit.setRod(rod);
         fishingKit.setReel(reel, line);
         fishingKit.setLine(line);
         fishingKit.setLure(lure, rod);
