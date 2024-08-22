@@ -8,6 +8,7 @@ import org.example.fishingconfig47.repositories.GenericRepository.DeleteReposito
 import org.example.fishingconfig47.repositories.GenericRepository.ReadRepository;
 import org.example.fishingconfig47.repositories.GenericRepository.UpdateRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,9 +36,9 @@ public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> impleme
 
     @Override
     public void deleteById(ID id) {
-        T entity = findById(id);
+        T entity = entityManager.find(entityClass, id);
         if (entity != null) {
-            delete(entity);
+            entityManager.remove(entity);
         }
     }
 
@@ -58,6 +59,7 @@ public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> impleme
     }
 
     @Override
+    @Transactional
     public <S extends T> S save(S entity) {
         if (entity.getId() == null) {
             entityManager.persist(entity);
