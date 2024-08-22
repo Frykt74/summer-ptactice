@@ -1,6 +1,7 @@
 package org.example.fishingconfig47.dto;
 
 public class FishingKitDto {
+    private Integer id;
     private String name;
     private Integer rodId;
     private Integer reelId;
@@ -20,6 +21,14 @@ public class FishingKitDto {
     }
 
     protected FishingKitDto() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
