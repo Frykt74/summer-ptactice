@@ -1,7 +1,7 @@
 package org.example.fishingconfig47.services;
 
 import org.example.fishingconfig47.entities.Line;
-import org.example.fishingconfig47.repositories.impl.LineRepositoryImpl;
+import org.example.fishingconfig47.repositories.LineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class LineService {
 
     @Autowired
-    private LineRepositoryImpl lineRepository;
+    private LineRepository lineRepository;
 
     public Line getLineById(Integer id) {
         return lineRepository.findById(id);

@@ -2,7 +2,7 @@ package org.example.fishingconfig47.services;
 
 import org.example.fishingconfig47.dtos.FishingKitDto;
 import org.example.fishingconfig47.entities.*;
-import org.example.fishingconfig47.repositories.impl.*;
+import org.example.fishingconfig47.repositories.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,21 +14,21 @@ import java.util.stream.Collectors;
 @Service
 public class FishingKitService {
 
-    private final FishingKitRepositoryImpl fishingKitRepository;
-    private final RodRepositoryImpl rodRepository;
-    private final ReelRepositoryImpl reelRepository;
-    private final LineRepositoryImpl lineRepository;
-    private final LureRepositoryImpl lureRepository;
+    private final FishingKitRepository fishingKitRepository;
+    private final RodRepository rodRepository;
+    private final ReelRepository reelRepository;
+    private final LineRepository lineRepository;
+    private final LureRepository lureRepository;
     private final ModelMapper modelMapper;
     private final RodReelService rodReelService;
 
     @Autowired
     public FishingKitService(
-            FishingKitRepositoryImpl fishingKitRepository,
-            RodRepositoryImpl rodRepository,
-            ReelRepositoryImpl reelRepository,
-            LineRepositoryImpl lineRepository,
-            LureRepositoryImpl lureRepository,
+            FishingKitRepository fishingKitRepository,
+            RodRepository rodRepository,
+            ReelRepository reelRepository,
+            LineRepository lineRepository,
+            LureRepository lureRepository,
             RodReelService rodReelService,
             ModelMapper modelMapper) {
         this.fishingKitRepository = fishingKitRepository;
@@ -79,7 +79,6 @@ public class FishingKitService {
         if (lure == null) {
             throw new IllegalArgumentException("Invalid Lure ID");
         }
-
 
 
         fishingKit.setRod(rod);

@@ -1,7 +1,7 @@
 package org.example.fishingconfig47.services;
 
 import org.example.fishingconfig47.entities.Lure;
-import org.example.fishingconfig47.repositories.impl.LureRepositoryImpl;
+import org.example.fishingconfig47.repositories.LureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class LureService {
 
     @Autowired
-    private LureRepositoryImpl lureRepository;
+    private LureRepository lureRepository;
 
     public Lure getLureById(Integer id) {
         return lureRepository.findById(id);
