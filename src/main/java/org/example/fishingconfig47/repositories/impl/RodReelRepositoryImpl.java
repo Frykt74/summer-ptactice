@@ -5,7 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import org.example.fishingconfig47.entities.Reel;
 import org.example.fishingconfig47.entities.Rod;
 import org.example.fishingconfig47.entities.RodReel;
-import org.example.fishingconfig47.repositories.IRepository.RodReelRepository;
+import org.example.fishingconfig47.repositories.RodReelRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

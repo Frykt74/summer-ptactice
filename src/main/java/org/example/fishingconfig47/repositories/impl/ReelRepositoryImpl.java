@@ -3,7 +3,7 @@ package org.example.fishingconfig47.repositories.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.fishingconfig47.entities.Reel;
-import org.example.fishingconfig47.repositories.IRepository.ReelRepository;
+import org.example.fishingconfig47.repositories.ReelRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

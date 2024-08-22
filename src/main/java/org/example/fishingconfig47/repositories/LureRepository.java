@@ -1,4 +1,4 @@
-package org.example.fishingconfig47.repositories.IRepository;
+package org.example.fishingconfig47.repositories;
 
 import org.example.fishingconfig47.entities.Lure;
 import org.example.fishingconfig47.repositories.generics.CreateRepository;
