@@ -6,7 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.List;
 
 @NoRepositoryBean
-public interface ReadRepository<T extends BaseEntity, ID>  {
+public interface ReadRepository<T extends BaseEntity, ID> {
     T findById(ID id);
 
     List<T> findAll();

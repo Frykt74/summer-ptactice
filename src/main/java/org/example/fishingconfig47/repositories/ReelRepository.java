@@ -15,5 +15,6 @@ public interface ReelRepository extends
         UpdateRepository<Reel, Integer> {
 
     List<Reel> findReelsByGearRatioAndMaxDrag(String gearRatio, float maxDrag);
+
     Reel findSuitableReel(String rodType, double budget);
 }

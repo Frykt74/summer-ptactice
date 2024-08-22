@@ -1,7 +1,6 @@
 package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.*;
-import org.example.fishingconfig47.services.RodReelService;
 
 @Entity
 @Table(name = "fishing_set")
@@ -15,7 +14,7 @@ public class FishingKit extends BaseEntity {
     private Integer fishCount;
 
 
-    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure,Float fishWeight,
+    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight,
                       Integer fishCount) {
         setName(name);
         setRod(rod);

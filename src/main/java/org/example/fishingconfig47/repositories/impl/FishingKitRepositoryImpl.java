@@ -32,8 +32,8 @@ public class FishingKitRepositoryImpl extends CustomCrudRepositoryImpl<FishingKi
         String jpql = "SELECT fs FROM FishingKit fs WHERE fs.lure.name = :name AND fs.lure.color = :color " +
                 "ORDER BY fs.fishWeight DESC, fs.fishCount DESC";
         return entityManager.createQuery(jpql, FishingKit.class)
-                .setParameter("name", "%" + name +"%")
-                .setParameter("color", "%" + color +"%")
+                .setParameter("name", "%" + name + "%")
+                .setParameter("color", "%" + color + "%")
                 .getResultList();
     }
 }

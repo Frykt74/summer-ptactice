@@ -14,7 +14,10 @@ public interface RodRepository extends
         ReadRepository<Rod, Integer>,
         UpdateRepository<Rod, Integer> {
     List<Rod> findRodsByLineTest(float testWeight);
+
     List<Rod> findRodsInSetsWithFishWeight(float weight);
+
     List<Rod> findRodsByLure(float lureWeight);
+
     List<Rod> findRodsByTypeAndFish(String type, float fishWeight);
 }

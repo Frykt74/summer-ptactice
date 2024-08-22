@@ -14,5 +14,6 @@ public interface LureRepository extends
         ReadRepository<Lure, Integer>,
         UpdateRepository<Lure, Integer> {
     List<Lure> findLuresByWeight(float weightMin, float weightMax);
+
     Lure findSuitableLure(double minWeight, double maxWeight, double budget);
 }

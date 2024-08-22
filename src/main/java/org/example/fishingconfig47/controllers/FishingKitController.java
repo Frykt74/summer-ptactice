@@ -21,7 +21,6 @@ public class FishingKitController {
         this.fishingKitService = fishingKitService;
     }
 
-    // Метод для создания нового рыболовного набора
     @PostMapping
     public ResponseEntity<FishingKitDto> createFishingKit(@RequestBody FishingKitDto fishingKitDto) {
         try {
@@ -32,7 +31,6 @@ public class FishingKitController {
         }
     }
 
-    // Метод для анализа эффективности рыболовных наборов
     @GetMapping("/analyze")
     public ResponseEntity<List<FishingKit>> analyzeFishingKits() {
         List<FishingKit> fishingKits = fishingKitService.analyzeFishingKits();

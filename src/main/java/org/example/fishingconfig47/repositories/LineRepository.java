@@ -14,5 +14,6 @@ public interface LineRepository extends
         ReadRepository<Line, Integer>,
         UpdateRepository<Line, Integer> {
     List<Line> findSuitableLinesByTestWidth(float testWidth);
+
     Line findSuitableLineByMaxDragAndBudget(double maxDrag, double budget);
 }
