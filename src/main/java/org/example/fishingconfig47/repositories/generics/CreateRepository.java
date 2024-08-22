@@ -1,8 +1,7 @@
-package org.example.fishingconfig47.repositories.GenericRepository;
+package org.example.fishingconfig47.repositories.generics;
 
 import org.example.fishingconfig47.entities.BaseEntity;
 import org.springframework.data.repository.NoRepositoryBean;
-import org.springframework.data.repository.Repository;
 
 @NoRepositoryBean
 public interface CreateRepository<T extends BaseEntity, ID>  {
