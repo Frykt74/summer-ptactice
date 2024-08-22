@@ -1,4 +1,4 @@
-package org.example.fishingconfig47.repositories.RepositoryImpl;
+package org.example.fishingconfig47.repositories.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

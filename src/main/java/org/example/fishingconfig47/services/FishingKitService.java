@@ -2,7 +2,7 @@ package org.example.fishingconfig47.services;
 
 import org.example.fishingconfig47.dto.FishingKitDto;
 import org.example.fishingconfig47.entities.*;
-import org.example.fishingconfig47.repositories.RepositoryImpl.*;
+import org.example.fishingconfig47.repositories.impl.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

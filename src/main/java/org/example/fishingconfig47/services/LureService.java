@@ -1,7 +1,7 @@
 package org.example.fishingconfig47.services;
 
 import org.example.fishingconfig47.entities.Lure;
-import org.example.fishingconfig47.repositories.RepositoryImpl.LureRepositoryImpl;
+import org.example.fishingconfig47.repositories.impl.LureRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
