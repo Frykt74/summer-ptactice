@@ -1,4 +1,4 @@
-package org.example.fishingconfig47.dto;
+package org.example.fishingconfig47.dtos;
 
 public class FishingKitDto {
     private Integer id;

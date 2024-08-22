@@ -1,6 +1,6 @@
 package org.example.fishingconfig47.services;
 
-import org.example.fishingconfig47.dto.FishingKitDto;
+import org.example.fishingconfig47.dtos.FishingKitDto;
 import org.example.fishingconfig47.entities.*;
 import org.example.fishingconfig47.repositories.impl.*;
 import org.modelmapper.ModelMapper;

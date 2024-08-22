@@ -1,6 +1,6 @@
 package org.example.fishingconfig47.controllers;
 
-import org.example.fishingconfig47.dto.FishingKitDto;
+import org.example.fishingconfig47.dtos.FishingKitDto;
 import org.example.fishingconfig47.entities.FishingKit;
 import org.example.fishingconfig47.services.FishingKitService;
 import org.springframework.beans.factory.annotation.Autowired;
