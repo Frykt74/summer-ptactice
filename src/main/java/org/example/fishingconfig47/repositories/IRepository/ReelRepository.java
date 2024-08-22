@@ -1,6 +1,6 @@
 package org.example.fishingconfig47.repositories.IRepository;
 
-import org.example.fishingconfig47.entities.Lure;
+import org.example.fishingconfig47.entities.Reel;
 import org.example.fishingconfig47.repositories.GenericRepository.CreateRepository;
 import org.example.fishingconfig47.repositories.GenericRepository.ReadRepository;
 import org.example.fishingconfig47.repositories.GenericRepository.UpdateRepository;
@@ -9,10 +9,11 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.List;
 
 @NoRepositoryBean
-public interface ILureRepository extends
-        CreateRepository<Lure, Integer>,
-        ReadRepository<Lure, Integer>,
-        UpdateRepository<Lure, Integer> {
-    List<Lure> findLuresByWeight(float weightMin, float weightMax);
-    Lure findSuitableLure(double minWeight, double maxWeight, double budget);
+public interface ReelRepository extends
+        CreateRepository<Reel, Integer>,
+        ReadRepository<Reel, Integer>,
+        UpdateRepository<Reel, Integer> {
+
+    List<Reel> findReelsByGearRatioAndMaxDrag(String gearRatio, float maxDrag);
+    Reel findSuitableReel(String rodType, double budget);
 }

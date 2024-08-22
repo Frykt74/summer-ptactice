@@ -3,13 +3,13 @@ package org.example.fishingconfig47.repositories.RepositoryImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.fishingconfig47.entities.Lure;
-import org.example.fishingconfig47.repositories.IRepository.ILureRepository;
+import org.example.fishingconfig47.repositories.IRepository.LureRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class LureRepositoryImpl extends CustomCrudRepositoryImpl<Lure, Integer> implements ILureRepository {
+public class LureRepositoryImpl extends CustomCrudRepositoryImpl<Lure, Integer> implements LureRepository {
 
     protected LureRepositoryImpl() {
         super(Lure.class);

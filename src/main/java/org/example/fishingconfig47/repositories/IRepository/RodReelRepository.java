@@ -8,7 +8,7 @@ import org.example.fishingconfig47.repositories.GenericRepository.ReadRepository
 import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
-public interface IRodReelRepository extends
+public interface RodReelRepository extends
         CreateRepository<RodReel, Integer>,
         ReadRepository<RodReel, Integer> {
 

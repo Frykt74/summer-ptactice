@@ -3,13 +3,13 @@ package org.example.fishingconfig47.repositories.RepositoryImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.fishingconfig47.entities.FishingKit;
-import org.example.fishingconfig47.repositories.IRepository.IFishingKitRepository;
+import org.example.fishingconfig47.repositories.IRepository.FishingKitRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class FishingKitRepositoryImpl extends CustomCrudRepositoryImpl<FishingKit, Integer> implements IFishingKitRepository {
+public class FishingKitRepositoryImpl extends CustomCrudRepositoryImpl<FishingKit, Integer> implements FishingKitRepository {
 
     @PersistenceContext
     private EntityManager entityManager;

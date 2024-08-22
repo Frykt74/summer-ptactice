@@ -9,7 +9,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.List;
 
 @NoRepositoryBean
-public interface ILineRepository extends
+public interface LineRepository extends
         CreateRepository<Line, Integer>,
         ReadRepository<Line, Integer>,
         UpdateRepository<Line, Integer> {
