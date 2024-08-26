@@ -13,8 +13,9 @@ public interface ReelRepository extends
         CreateRepository<Reel, Integer>,
         ReadRepository<Reel, Integer>,
         UpdateRepository<Reel, Integer> {
-
     List<Reel> findReelsByGearRatioAndMaxDrag(String gearRatio, float maxDrag);
 
     Reel findSuitableReel(String rodType, double budget);
+
+    Reel findBudgetReel(double budget);
 }

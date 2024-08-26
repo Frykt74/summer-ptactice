@@ -20,4 +20,6 @@ public interface RodRepository extends
     List<Rod> findRodsByLure(float lureWeight);
 
     List<Rod> findRodsByTypeAndFish(String type, float fishWeight);
+
+    Rod findBudgetRod(double budget);
 }

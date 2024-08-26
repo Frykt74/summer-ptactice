@@ -2,6 +2,7 @@ package org.example.fishingconfig47.repositories.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.example.fishingconfig47.entities.Line;
 import org.example.fishingconfig47.repositories.LineRepository;
 import org.springframework.stereotype.Repository;
@@ -33,5 +34,16 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
                 .setParameter("budget", budget)
                 .setParameter("maxDrag", maxDrag)
                 .getSingleResult();
+    }
+
+    @Override
+    public Line findBudgetLine(double budget) {
+        String jpql = "SELECT l FROM Line l WHERE l.price <= :budget ORDER BY l.price DESC";
+
+        TypedQuery<Line> query = entityManager.createQuery(jpql, Line.class);
+        query.setParameter("budget", budget);
+        query.setMaxResults(1);
+
+        return query.getResultList().stream().findFirst().orElse(null);
     }
 }

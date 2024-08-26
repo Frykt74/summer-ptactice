@@ -2,6 +2,7 @@ package org.example.fishingconfig47.repositories.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.example.fishingconfig47.entities.Lure;
 import org.example.fishingconfig47.repositories.LureRepository;
 import org.springframework.stereotype.Repository;
@@ -35,5 +36,16 @@ public class LureRepositoryImpl extends CustomCrudRepositoryImpl<Lure, Integer> 
                 .setParameter("minWeight", minWeight)
                 .setParameter("maxWeight", maxWeight)
                 .getSingleResult();
+    }
+
+    @Override
+    public Lure findBudgetLure(double budget) {
+        String jpql = "SELECT l FROM Lure l WHERE l.price <= :budget ORDER BY l.price DESC";
+
+        TypedQuery<Lure> query = entityManager.createQuery(jpql, Lure.class);
+        query.setParameter("budget", budget);
+        query.setMaxResults(1);
+
+        return query.getResultList().stream().findFirst().orElse(null);
     }
 }

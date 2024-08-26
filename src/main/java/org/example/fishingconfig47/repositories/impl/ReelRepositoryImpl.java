@@ -2,6 +2,7 @@ package org.example.fishingconfig47.repositories.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.example.fishingconfig47.entities.Reel;
 import org.example.fishingconfig47.repositories.ReelRepository;
 import org.springframework.stereotype.Repository;
@@ -34,5 +35,16 @@ public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> 
                 .setParameter("budget", budget)
                 .setParameter("rodType", rodType)
                 .getSingleResult();
+    }
+
+    @Override
+    public Reel findBudgetReel(double budget) {
+        String jpql = "SELECT r FROM Reel r WHERE r.price <= :budget ORDER BY r.price DESC";
+
+        TypedQuery<Reel> query = entityManager.createQuery(jpql, Reel.class);
+        query.setParameter("budget", budget);
+        query.setMaxResults(1);
+
+        return query.getResultList().stream().findFirst().orElse(null);
     }
 }

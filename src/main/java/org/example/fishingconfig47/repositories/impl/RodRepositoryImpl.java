@@ -2,6 +2,7 @@ package org.example.fishingconfig47.repositories.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import org.example.fishingconfig47.entities.Rod;
 import org.example.fishingconfig47.repositories.RodRepository;
 import org.springframework.stereotype.Repository;
@@ -49,5 +50,17 @@ public class RodRepositoryImpl extends CustomCrudRepositoryImpl<Rod, Integer> im
                 .setParameter("type", type)
                 .setParameter("fishWeight", fishWeight)
                 .getResultList();
+    }
+
+    @Override
+    public Rod findBudgetRod(double budget) {
+
+        String jpql = "SELECT r FROM Rod r WHERE r.price <= :budget ORDER BY r.price DESC";
+
+        TypedQuery<Rod> query = entityManager.createQuery(jpql, Rod.class);
+        query.setParameter("budget", budget);
+        query.setMaxResults(1);
+
+        return query.getResultList().stream().findFirst().orElse(null);
     }
 }

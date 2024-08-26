@@ -13,7 +13,6 @@ public class RodReelRepositoryImpl extends CustomCrudRepositoryImpl<RodReel, Int
     protected RodReelRepositoryImpl() {
         super(RodReel.class);
     }
-//    TODO: add validation condition for record creation
 
     @PersistenceContext
     private EntityManager entityManager;

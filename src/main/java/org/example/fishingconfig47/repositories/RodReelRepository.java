@@ -11,6 +11,5 @@ import org.springframework.data.repository.NoRepositoryBean;
 public interface RodReelRepository extends
         CreateRepository<RodReel, Integer>,
         ReadRepository<RodReel, Integer> {
-
     boolean existsRodAndReel(Rod rod, Reel reel);
 }
