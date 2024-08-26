@@ -13,7 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @NoRepositoryBean
-public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> implements CreateRepository<T, ID>, ReadRepository<T, ID>,
+public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> implements
+        CreateRepository<T, ID>, ReadRepository<T, ID>,
         UpdateRepository<T, ID>, DeleteRepository<T, ID> {
 
     private final Class<T> entityClass;

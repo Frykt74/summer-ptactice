@@ -1,7 +1,7 @@
 package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.*;
-import org.example.fishingconfig47.services.RodReelService;
+import org.example.fishingconfig47.services.impl.RodReelServiceImpl;
 
 @Entity
 @Table(name = "rod_reel")
@@ -10,7 +10,7 @@ public class RodReel extends BaseEntity {
     private Reel reel;
 
     @Transient
-    private RodReelService rodReelService;
+    private RodReelServiceImpl rodReelService;
 
     public RodReel(Rod rod, Reel reel) {
         setRod(rod, reel);
@@ -29,7 +29,7 @@ public class RodReel extends BaseEntity {
     protected void setRod(Rod rod) {
         this.rod = rod;
     }
-
+//TODO: remove service
     public void setRod(Rod rod, Reel reel) {
         if (rodReelService.existsPairOfRodAndReel(rod, reel)) {
             throw new IllegalArgumentException("Rod and Reel already exists");
