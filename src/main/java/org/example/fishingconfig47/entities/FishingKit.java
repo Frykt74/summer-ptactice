@@ -1,6 +1,7 @@
 package org.example.fishingconfig47.entities;
 
 import jakarta.persistence.*;
+import org.example.fishingconfig47.exceptions.*;
 
 @Entity
 @Table(name = "fishing_set")
@@ -35,7 +36,7 @@ public class FishingKit extends BaseEntity {
 
     public void setName(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("Name cannot be null");
+            throw new IllegalNameException("Name cannot be null");
         }
         this.name = name;
     }
@@ -62,9 +63,11 @@ public class FishingKit extends BaseEntity {
 
     public void setReel(Reel reel, Line line) {
         if (reel == null) {
-            throw new IllegalArgumentException("Reel cannot be null");
+            throw new ReelNotFoundException("Reel cannot be null");
+
         } else if (line.getTestWidth() > reel.getMaxDrag()) {
-            throw new IllegalArgumentException("Нагрузка лески не должна превышать мощность фрикциона");
+
+            throw new IllegalLineException("Нагрузка лески не должна превышать мощность фрикциона");
         }
         this.reel = reel;
     }
@@ -77,7 +80,7 @@ public class FishingKit extends BaseEntity {
 
     public void setLine(Line line) {
         if (line == null) {
-            throw new IllegalArgumentException("Line cannot be null");
+            throw new LineNotFoundException("Line cannot be null");
         }
         this.line = line;
     }
@@ -94,9 +97,9 @@ public class FishingKit extends BaseEntity {
 
     public void setLure(Lure lure, Rod rod) {
         if (lure == null) {
-            throw new IllegalArgumentException("Lure cannot be null");
+            throw new LureNotFoundException("Lure cannot be null");
         } else if (lure.getWeight() < rod.getLureWeightMin() || lure.getWeight() > rod.getLureWeightMax()) {
-            throw new IllegalArgumentException("Масса приманки должна быть в диапазоне теста удилища");
+            throw new IllegalLureException("Масса приманки должна быть в диапазоне теста удилища");
         }
         this.lure = lure;
     }
@@ -108,7 +111,7 @@ public class FishingKit extends BaseEntity {
 
     public void setFishWeight(float fishWeight) {
         if (fishWeight < 0) {
-            throw new IllegalArgumentException("Fish weight cannot be negative");
+            throw new IllegalFishWeightException("Вес рыбы не может быть отрицательным");
         }
         this.fishWeight = fishWeight;
     }
@@ -120,7 +123,7 @@ public class FishingKit extends BaseEntity {
 
     public void setFishCount(int fishCount) {
         if (fishCount < 0) {
-            throw new IllegalArgumentException("Fish count cannot be negative");
+            throw new IllegalFishCountException("Fish count cannot be negative");
         }
         this.fishCount = fishCount;
     }

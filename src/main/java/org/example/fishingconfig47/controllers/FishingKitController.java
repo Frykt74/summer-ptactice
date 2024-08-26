@@ -23,12 +23,9 @@ public class FishingKitController {
 
     @PostMapping
     public ResponseEntity<FishingKitDto> createFishingKit(@RequestBody FishingKitDto fishingKitDto) {
-        try {
-            FishingKitDto createdFishingKit = fishingKitService.createFishingKit(fishingKitDto);
-            return new ResponseEntity<>(createdFishingKit, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
+
+        FishingKitDto createdFishingKit = fishingKitService.createFishingKit(fishingKitDto);
+        return new ResponseEntity<>(createdFishingKit, HttpStatus.CREATED);
     }
 
     @GetMapping("/analyze")
