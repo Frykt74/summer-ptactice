@@ -54,7 +54,6 @@ public class RodRepositoryImpl extends CustomCrudRepositoryImpl<Rod, Integer> im
 
     @Override
     public Rod findBudgetRod(double budget) {
-
         String jpql = "SELECT r FROM Rod r WHERE r.price <= :budget ORDER BY r.price DESC";
 
         TypedQuery<Rod> query = entityManager.createQuery(jpql, Rod.class);
@@ -62,5 +61,14 @@ public class RodRepositoryImpl extends CustomCrudRepositoryImpl<Rod, Integer> im
         query.setMaxResults(1);
 
         return query.getResultList().stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public List<Rod> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice) {
+        String jpql = "SELECT r FROM Rod r WHERE r.price <= :maxPrice ORDER BY r.price DESC";
+        return entityManager.createQuery(jpql, Rod.class)
+                .setParameter("maxPrice", maxPrice)
+                .setMaxResults(4)
+                .getResultList();
     }
 }

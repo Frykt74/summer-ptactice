@@ -46,4 +46,14 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
 
         return query.getResultList().stream().findFirst().orElse(null);
     }
+
+    @Override
+    public List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice) {
+        String jpql = "SELECT l FROM Line l WHERE l.price <= :maxPrice ORDER BY l.price DESC";
+
+        return entityManager.createQuery(jpql, Line.class)
+                .setParameter("maxPrice", maxPrice)
+                .setMaxResults(4)
+                .getResultList();
+    }
 }

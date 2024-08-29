@@ -18,4 +18,6 @@ public interface LureRepository extends
     Lure findSuitableLure(double minWeight, double maxWeight, double budget);
 
     Lure findBudgetLure(double budget);
+
+    List<Lure> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice);
 }

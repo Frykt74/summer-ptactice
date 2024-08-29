@@ -18,4 +18,6 @@ public interface LineRepository extends
     Line findSuitableLineByMaxDragAndBudget(double maxDrag, double budget);
 
     Line findBudgetLine(double budget);
+
+    List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice);
 }
