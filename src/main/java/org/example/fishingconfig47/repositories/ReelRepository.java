@@ -18,4 +18,8 @@ public interface ReelRepository extends
     Reel findSuitableReel(String rodType, double budget);
 
     Reel findBudgetReel(double budget);
+
+    List<Reel> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice);
+
+    List<Reel> findReelsByRodId(Long rodId);
 }

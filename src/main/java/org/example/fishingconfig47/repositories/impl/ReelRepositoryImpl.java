@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> implements ReelRepository {
-
     protected ReelRepositoryImpl() {
         super(Reel.class);
     }
@@ -46,5 +45,25 @@ public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> 
         query.setMaxResults(1);
 
         return query.getResultList().stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public List<Reel> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice) {
+        String jpql = "SELECT r FROM Reel r WHERE r.price <= :maxPrice ORDER BY r.price DESC";
+        return entityManager.createQuery(jpql, Reel.class)
+                .setParameter("maxPrice", maxPrice)
+                .setMaxResults(4)
+                .getResultList();
+    }
+
+
+    public List<Reel> findReelsByRodId(Long rodId) {
+        String jpql = "SELECT r FROM Reel r " +
+                "WHERE r.id IN (SELECT rr.reel.id FROM RodReel rr WHERE rr.rod.id = :rodId)";
+
+        TypedQuery<Reel> query = entityManager.createQuery(jpql, Reel.class);
+        query.setParameter("rodId", rodId);
+
+        return query.getResultList();
     }
 }
