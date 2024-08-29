@@ -1,7 +1,7 @@
 package org.example.fishingconfig47.services;
 
-import org.example.fishingconfig47.entities.FishingKit;
+import org.example.fishingconfig47.dtos.FishingKitDto;
 
 public interface BudgetKitService {
-    FishingKit selectKitByBudget(Double budget);
+    FishingKitDto selectKitByBudget(Integer budget);
 }

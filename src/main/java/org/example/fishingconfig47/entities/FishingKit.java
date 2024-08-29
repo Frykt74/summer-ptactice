@@ -66,7 +66,6 @@ public class FishingKit extends BaseEntity {
             throw new ReelNotFoundException("Reel cannot be null");
 
         } else if (line.getTestWidth() > reel.getMaxDrag()) {
-
             throw new IllegalLineException("Нагрузка лески не должна превышать мощность фрикциона");
         }
         this.reel = reel;
@@ -123,7 +122,7 @@ public class FishingKit extends BaseEntity {
 
     public void setFishCount(int fishCount) {
         if (fishCount < 0) {
-            throw new IllegalFishCountException("Fish count cannot be negative");
+            throw new IllegalFishCountException("Количество рыб не может быть отрицательным");
         }
         this.fishCount = fishCount;
     }

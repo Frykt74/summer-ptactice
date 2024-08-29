@@ -13,7 +13,7 @@ public class RodReel extends BaseEntity {
     private RodReelServiceImpl rodReelService;
 
     public RodReel(Rod rod, Reel reel) {
-        setRod(rod, reel);
+        setRod(rod);
         setReel(reel);
     }
 
@@ -26,14 +26,7 @@ public class RodReel extends BaseEntity {
         return rod;
     }
 
-    protected void setRod(Rod rod) {
-        this.rod = rod;
-    }
-//TODO: remove service
-    public void setRod(Rod rod, Reel reel) {
-        if (rodReelService.existsPairOfRodAndReel(rod, reel)) {
-            throw new IllegalArgumentException("Rod and Reel already exists");
-        }
+    public void setRod(Rod rod) {
         this.rod = rod;
     }
 

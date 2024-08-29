@@ -8,11 +8,8 @@ import jakarta.persistence.Table;
 @Table(name = "reel")
 public class Reel extends BaseEntity {
     private String type;
-    //    Передаточное Число
     private String gearRatio;
-    //    Скорость Подмотки
     private int recovery;
-    //    Мощность Фрикциона
     private float maxDrag;
     private int weight;
     private String description;

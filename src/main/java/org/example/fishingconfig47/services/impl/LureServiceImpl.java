@@ -21,7 +21,7 @@ public class LureServiceImpl implements LureService {
         Lure findLure = lureRepository.findById(id);
 
         if (findLure == null) {
-            throw new LureNotFoundException("Lure with id " + id + " not found");
+            throw new LureNotFoundException(id);
         }
 
         return findLure;

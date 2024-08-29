@@ -8,7 +8,6 @@ import jakarta.persistence.Table;
 @Table(name = "line")
 public class Line extends BaseEntity {
     private String type;
-    //  Диаметр
     private float thickness;
     private float testWidth;
     private String color;

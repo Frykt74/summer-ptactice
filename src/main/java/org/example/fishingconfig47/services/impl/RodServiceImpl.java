@@ -21,7 +21,7 @@ public class RodServiceImpl implements RodService {
         Rod findRod = rodRepository.findById(id);
 
         if (findRod == null) {
-            throw new RodNotFoundException("Rod with id " + id + " not found");
+            throw new RodNotFoundException(id);
         }
 
         return findRod;

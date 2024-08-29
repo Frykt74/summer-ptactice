@@ -12,15 +12,11 @@ public class Rod extends BaseEntity {
     private String name;
     private String type;
     private int length;
-    //    Тест (Вес приманки)
     private float lureWeightMin;
     private float lureWeightMax;
-    //    Класс
     private String power;
-    //    Рабочая Нагрузка
     private float lineWeightMin;
     private float lineWeightMax;
-    //    Строй
     private String action;
     private String description;
     private int price;

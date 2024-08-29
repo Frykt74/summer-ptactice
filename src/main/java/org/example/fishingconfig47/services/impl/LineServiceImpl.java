@@ -20,7 +20,7 @@ public class LineServiceImpl implements LineService {
     public Line getLineById(Integer id) {
         Line findLine = lineRepository.findById(id);
         if (findLine == null) {
-            throw new LineNotFoundException("Line with id " + id + " not found");
+            throw new LineNotFoundException(id);
         }
         return findLine;
     }

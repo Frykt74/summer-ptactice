@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 
 @Service
 public class FishingKitServiceImpl implements FishingKitService {
-
     private final FishingKitRepository fishingKitRepository;
     private final RodRepository rodRepository;
     private final ReelRepository reelRepository;
     private final LineRepository lineRepository;
     private final LureRepository lureRepository;
-    private final ModelMapper modelMapper;
     private final RodReelRepository rodReelRepository;
+
+    private final ModelMapper modelMapper;
 
     @Autowired
     public FishingKitServiceImpl(
@@ -51,25 +51,25 @@ public class FishingKitServiceImpl implements FishingKitService {
         Reel reel = reelRepository.findById(fishingKitDto.getReelId());
 
         if (reel == null) {
-            throw new ReelNotFoundException("Reel with id " + fishingKitDto.getReelId() + " not found");
+            throw new ReelNotFoundException(fishingKitDto.getReelId());
         }
 
         if (rod == null) {
-            throw new RodNotFoundException("Rod with id " + fishingKitDto.getRodId() + " not found");
+            throw new RodNotFoundException(fishingKitDto.getRodId());
 
         } else if (!rodReelRepository.existsRodAndReel(rod, reel)) {
-            throw new InvalidRodReelCombinationException("Invalid Rod Reel Combination");
+            throw new InvalidRodReelCombinationException("Катушка не подходит к удилищу");
         }
 
         Line line = lineRepository.findById(fishingKitDto.getLineId());
         if (line == null) {
-            throw new LineNotFoundException("Line with id " + fishingKitDto.getLineId() + " not found");
+            throw new LineNotFoundException(fishingKitDto.getLineId());
         }
 
         Lure lure = lureRepository.findById(fishingKitDto.getLureId());
 
         if (lure == null) {
-            throw new LureNotFoundException("Lure with id " + fishingKitDto.getLureId() + " not found");
+            throw new LureNotFoundException(fishingKitDto.getLureId());
         }
 
         fishingKit.setRod(rod);
@@ -81,13 +81,15 @@ public class FishingKitServiceImpl implements FishingKitService {
         return convertToDto(savedFishingKit);
     }
 
-    public List<FishingKit> analyzeFishingKits() {
+    public List<FishingKitDto> analyzeFishingKits() {
         return fishingKitRepository.findAll().stream()
                 .sorted(Comparator
                         .comparing(FishingKit::getFishCount, Comparator.reverseOrder())
                         .thenComparing(FishingKit::getFishWeight, Comparator.reverseOrder())
                         .thenComparing(fk -> fk.getFishWeight() / fk.getFishCount(), Comparator.reverseOrder())
-                ).collect(Collectors.toList());
+                )
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
     private FishingKitDto convertToDto(FishingKit fishingKit) {
