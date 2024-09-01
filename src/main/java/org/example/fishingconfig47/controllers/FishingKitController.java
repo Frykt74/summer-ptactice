@@ -22,7 +22,31 @@ public class FishingKitController {
         this.budgetKitService = budgetKitService;
     }
 
-    @PostMapping
+    @GetMapping("/all")
+    public ResponseEntity<List<FishingKitDto>> getAllFishingKits() {
+        List<FishingKitDto> fishingKits = fishingKitService.getAllFishingKits();
+        return new ResponseEntity<>(fishingKits, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FishingKitDto> getFishingKitById(@PathVariable Integer id) {
+        FishingKitDto fishingKit = fishingKitService.getFishingKitDtoById(id);
+        return new ResponseEntity<>(fishingKit, HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<FishingKitDto> updateFishingKit(@PathVariable Integer id, @RequestBody FishingKitDto fishingKitDto) {
+        FishingKitDto updatedFishingKit = fishingKitService.updateFishingKit(id, fishingKitDto);
+        return new ResponseEntity<>(updatedFishingKit, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteFishingKit(@PathVariable Integer id) {
+        fishingKitService.deleteFishingKit(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("/create")
     public ResponseEntity<FishingKitDto> createFishingKit(@RequestBody FishingKitDto fishingKitDto) {
         FishingKitDto createdFishingKit = fishingKitService.createFishingKit(fishingKitDto);
         return new ResponseEntity<>(createdFishingKit, HttpStatus.CREATED);

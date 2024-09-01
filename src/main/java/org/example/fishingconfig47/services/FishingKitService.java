@@ -8,4 +8,12 @@ public interface FishingKitService {
     FishingKitDto createFishingKit(FishingKitDto fishingKitDto);
 
     List<FishingKitDto> analyzeFishingKits();
+
+    List<FishingKitDto> getAllFishingKits();
+
+    FishingKitDto getFishingKitDtoById(Integer id);
+
+    FishingKitDto updateFishingKit(Integer id, FishingKitDto fishingKitDto);
+
+    void deleteFishingKit(Integer id);
 }

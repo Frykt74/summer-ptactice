@@ -47,30 +47,15 @@ public class FishingKitServiceImpl implements FishingKitService {
     public FishingKitDto createFishingKit(FishingKitDto fishingKitDto) {
         FishingKit fishingKit = modelMapper.map(fishingKitDto, FishingKit.class);
 
-        Rod rod = rodRepository.findById(fishingKitDto.getRodId());
-        Reel reel = reelRepository.findById(fishingKitDto.getReelId());
+        Rod rod = getRodById(fishingKitDto.getRodId());
+        Reel reel = getReelById(fishingKitDto.getReelId());
 
-        if (reel == null) {
-            throw new ReelNotFoundException(fishingKitDto.getReelId());
-        }
-
-        if (rod == null) {
-            throw new RodNotFoundException(fishingKitDto.getRodId());
-
-        } else if (!rodReelRepository.existsRodAndReel(rod, reel)) {
+        if (!rodReelRepository.existsRodAndReel(rod, reel)) {
             throw new InvalidRodReelCombinationException("Катушка не подходит к удилищу");
         }
 
-        Line line = lineRepository.findById(fishingKitDto.getLineId());
-        if (line == null) {
-            throw new LineNotFoundException(fishingKitDto.getLineId());
-        }
-
-        Lure lure = lureRepository.findById(fishingKitDto.getLureId());
-
-        if (lure == null) {
-            throw new LureNotFoundException(fishingKitDto.getLureId());
-        }
+        Line line = getLineById(fishingKitDto.getLineId());
+        Lure lure = getLureById(fishingKitDto.getLureId());
 
         fishingKit.setRod(rod);
         fishingKit.setReel(reel, line);
@@ -92,7 +77,90 @@ public class FishingKitServiceImpl implements FishingKitService {
                 .collect(Collectors.toList());
     }
 
+    public List<FishingKitDto> getAllFishingKits() {
+        return fishingKitRepository.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    public FishingKitDto getFishingKitDtoById(Integer id) {
+        FishingKit fishingKit = fishingKitRepository.findById(id);
+        if (fishingKit == null) {
+            throw new FishingKitNotFoundException(id);
+        }
+        return convertToDto(fishingKit);
+    }
+
+    public FishingKitDto updateFishingKit(Integer id, FishingKitDto fishingKitDto) {
+        FishingKit existingFishingKit = getFishingKitById(id);
+
+        Rod newRod = getRodById(fishingKitDto.getRodId());
+        Reel newReel = getReelById(fishingKitDto.getReelId());
+        Line newLine = getLineById(fishingKitDto.getLineId());
+        Lure newLure = getLureById(fishingKitDto.getLureId());
+
+        existingFishingKit.setName(fishingKitDto.getName());
+        existingFishingKit.setRod(newRod);
+        existingFishingKit.setReel(newReel, newLine);
+        existingFishingKit.setLine(newLine);
+        existingFishingKit.setLure(newLure, newRod);
+        existingFishingKit.setFishCount(fishingKitDto.getFishCount());
+        existingFishingKit.setFishWeight(fishingKitDto.getFishWeight());
+
+        FishingKit updatedFishingKit = fishingKitRepository.save(existingFishingKit);
+        return convertToDto(updatedFishingKit);
+    }
+
+    public void deleteFishingKit(Integer id) {
+        fishingKitRepository.delete(getFishingKitById(id));
+    }
+
     private FishingKitDto convertToDto(FishingKit fishingKit) {
         return modelMapper.map(fishingKit, FishingKitDto.class);
+    }
+
+    private FishingKit getFishingKitById(Integer id) {
+        FishingKit fishingKit = fishingKitRepository.findById(id);
+
+        if (fishingKit == null) {
+            throw new FishingKitNotFoundException(id);
+        }
+        return fishingKit;
+    }
+
+    private Rod getRodById(Integer id) {
+        Rod rod = rodRepository.findById(id);
+
+        if (rod == null) {
+            throw new RodNotFoundException(id);
+        }
+        return rod;
+    }
+
+    private Reel getReelById(Integer id) {
+        Reel reel = reelRepository.findById(id);
+
+        if (reel == null) {
+            throw new ReelNotFoundException(id);
+        }
+        return reel;
+    }
+
+    private Line getLineById(Integer id) {
+        Line line = lineRepository.findById(id);
+
+        if (line == null) {
+            throw new LineNotFoundException(id);
+        }
+        return line;
+    }
+
+    private Lure getLureById(Integer id) {
+        Lure lure = lureRepository.findById(id);
+
+        if (lure == null) {
+            throw new LureNotFoundException(id);
+        }
+        return lure;
     }
 }
