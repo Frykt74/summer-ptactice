@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
-// Удилища
 @Entity
 @Table(name = "rod")
 public class Rod extends BaseEntity {

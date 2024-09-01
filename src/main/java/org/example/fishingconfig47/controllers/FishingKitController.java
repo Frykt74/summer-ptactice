@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/fishing-kits")
 public class FishingKitController {
@@ -18,8 +17,7 @@ public class FishingKitController {
     private final BudgetKitService budgetKitService;
 
     @Autowired
-    public FishingKitController(FishingKitService fishingKitService,
-                                BudgetKitService budgetKitService) {
+    public FishingKitController(FishingKitService fishingKitService, BudgetKitService budgetKitService) {
         this.fishingKitService = fishingKitService;
         this.budgetKitService = budgetKitService;
     }
