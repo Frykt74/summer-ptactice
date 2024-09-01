@@ -9,4 +9,8 @@ public class LineNotFoundException extends ResourceNotFoundException {
     public LineNotFoundException(Integer id) {
         super("Line with id " + id + " not found");
     }
+
+    public LineNotFoundException() {
+        super("Line not found");
+    }
 }

@@ -9,4 +9,8 @@ public class ReelNotFoundException extends ResourceNotFoundException {
     public ReelNotFoundException(Integer id) {
         super("Reel with id " + id + " not found");
     }
+
+    public ReelNotFoundException() {
+        super("Reel not found");
+    }
 }

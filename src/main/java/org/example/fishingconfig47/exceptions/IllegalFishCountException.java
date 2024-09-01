@@ -4,4 +4,8 @@ public class IllegalFishCountException extends ValidationException {
     public IllegalFishCountException(String message) {
         super(message);
     }
+
+    public IllegalFishCountException() {
+        super("Illegal fish count");
+    }
 }
