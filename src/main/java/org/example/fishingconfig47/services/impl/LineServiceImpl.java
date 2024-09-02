@@ -17,7 +17,7 @@ public class LineServiceImpl implements LineService {
         this.lineRepository = lineRepository;
     }
 
-    public Line getLineById(Integer id) {
+    public Line getLineById(int id) {
         Line findLine = lineRepository.findById(id);
         if (findLine == null) {
             throw new LineNotFoundException(id);

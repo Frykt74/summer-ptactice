@@ -22,7 +22,7 @@ public class ReelController {
     }
 
     @GetMapping("/rod/{rodId}")
-    public ResponseEntity<List<ReelDto>> getReelsToMatchTheRod(@PathVariable Long rodId) {
+    public ResponseEntity<List<ReelDto>> getReelsToMatchTheRod(@PathVariable int rodId) {
         List<ReelDto> reels = reelService.getReelsToMatchTheRod(rodId);
         return ResponseEntity.ok(reels);
     }

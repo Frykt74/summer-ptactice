@@ -21,7 +21,7 @@ public interface RodRepository extends
 
     List<Rod> findRodsByTypeAndFish(String type, float fishWeight);
 
-    Rod findBudgetRod(double budget);
+    Rod findBudgetRod(float budget);
 
-    List<Rod> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice);
+    List<Rod> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice);
 }

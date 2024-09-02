@@ -30,7 +30,7 @@ public class LureRepositoryImpl extends CustomCrudRepositoryImpl<Lure, Integer> 
     }
 
     @Override
-    public Lure findSuitableLure(double minWeight, double maxWeight, double budget) {
+    public Lure findSuitableLure(float minWeight, float maxWeight, float budget) {
         String jpql = "SELECT l FROM Lure l WHERE l.price <= :budget AND l.weight BETWEEN :minWeight AND :maxWeight";
 
         return entityManager.createQuery(jpql, Lure.class)
@@ -41,7 +41,7 @@ public class LureRepositoryImpl extends CustomCrudRepositoryImpl<Lure, Integer> 
     }
 
     @Override
-    public Lure findBudgetLure(double budget) {
+    public Lure findBudgetLure(float budget) {
         String jpql = "SELECT l FROM Lure l WHERE l.price <= :budget ORDER BY l.price DESC";
 
         TypedQuery<Lure> query = entityManager.createQuery(jpql, Lure.class);
@@ -52,7 +52,7 @@ public class LureRepositoryImpl extends CustomCrudRepositoryImpl<Lure, Integer> 
     }
 
     @Override
-    public List<Lure> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice) {
+    public List<Lure> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice) {
         String jpql = "SELECT l FROM Lure l WHERE l.price <= :maxPrice ORDER BY l.price DESC";
 
         return entityManager.createQuery(jpql, Lure.class)

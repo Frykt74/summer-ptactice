@@ -17,7 +17,7 @@ public class RodServiceImpl implements RodService {
         this.rodRepository = rodRepository;
     }
 
-    public Rod getRodById(Integer id) {
+    public Rod getRodById(int id) {
         Rod findRod = rodRepository.findById(id);
 
         if (findRod == null) {

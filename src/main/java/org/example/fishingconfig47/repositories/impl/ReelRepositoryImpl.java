@@ -28,7 +28,7 @@ public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> 
     }
 
     @Override
-    public Reel findSuitableReel(String rodType, double budget) {
+    public Reel findSuitableReel(String rodType, float budget) {
         String jpql = "SELECT r FROM Reel r WHERE r.price <= :budget AND r.type = :rodType";
         return entityManager.createQuery(jpql, Reel.class)
                 .setParameter("budget", budget)
@@ -37,7 +37,7 @@ public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> 
     }
 
     @Override
-    public Reel findBudgetReel(double budget) {
+    public Reel findBudgetReel(float budget) {
         String jpql = "SELECT r FROM Reel r WHERE r.price <= :budget ORDER BY r.price DESC";
 
         TypedQuery<Reel> query = entityManager.createQuery(jpql, Reel.class);
@@ -48,7 +48,7 @@ public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> 
     }
 
     @Override
-    public List<Reel> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice) {
+    public List<Reel> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice) {
         String jpql = "SELECT r FROM Reel r WHERE r.price <= :maxPrice ORDER BY r.price DESC";
         return entityManager.createQuery(jpql, Reel.class)
                 .setParameter("maxPrice", maxPrice)
@@ -56,8 +56,7 @@ public class ReelRepositoryImpl extends CustomCrudRepositoryImpl<Reel, Integer> 
                 .getResultList();
     }
 
-
-    public List<Reel> findReelsByRodId(Long rodId) {
+    public List<Reel> findReelsByRodId(int rodId) {
         String jpql = "SELECT r FROM Reel r " +
                 "WHERE r.id IN (SELECT rr.reel.id FROM RodReel rr WHERE rr.rod.id = :rodId)";
 

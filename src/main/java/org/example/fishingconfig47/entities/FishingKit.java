@@ -11,12 +11,12 @@ public class FishingKit extends BaseEntity {
     private Reel reel;
     private Line line;
     private Lure lure;
-    private Float fishWeight;
-    private Integer fishCount;
+    private float fishWeight;
+    private int fishCount;
 
 
-    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, Float fishWeight,
-                      Integer fishCount) {
+    public FishingKit(String name, Rod rod, Reel reel, Line line, Lure lure, float fishWeight,
+                      int fishCount) {
         setName(name);
         setRod(rod);
         setReel(reel, line);

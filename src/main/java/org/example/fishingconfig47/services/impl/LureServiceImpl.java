@@ -17,7 +17,7 @@ public class LureServiceImpl implements LureService {
         this.lureRepository = lureRepository;
     }
 
-    public Lure getLureById(Integer id) {
+    public Lure getLureById(int id) {
         Lure findLure = lureRepository.findById(id);
 
         if (findLure == null) {

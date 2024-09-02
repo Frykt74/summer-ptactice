@@ -15,9 +15,9 @@ public interface LineRepository extends
         UpdateRepository<Line, Integer> {
     List<Line> findSuitableLinesByTestWidth(float testWidth);
 
-    Line findSuitableLineByMaxDragAndBudget(double maxDrag, double budget);
+    Line findSuitableLineByMaxDragAndBudget(float maxDrag, float budget);
 
-    Line findBudgetLine(double budget);
+    Line findBudgetLine(float budget);
 
-    List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice);
+    List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice);
 }

@@ -83,7 +83,7 @@ public class FishingKitServiceImpl implements FishingKitService {
                 .collect(Collectors.toList());
     }
 
-    public FishingKitDto getFishingKitDtoById(Integer id) {
+    public FishingKitDto getFishingKitDtoById(int id) {
         FishingKit fishingKit = fishingKitRepository.findById(id);
         if (fishingKit == null) {
             throw new FishingKitNotFoundException(id);
@@ -91,7 +91,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return convertToDto(fishingKit);
     }
 
-    public FishingKitDto updateFishingKit(Integer id, FishingKitDto fishingKitDto) {
+    public FishingKitDto updateFishingKit(int id, FishingKitDto fishingKitDto) {
         FishingKit existingFishingKit = getFishingKitById(id);
 
         Rod newRod = getRodById(fishingKitDto.getRodId());
@@ -111,7 +111,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return convertToDto(updatedFishingKit);
     }
 
-    public void deleteFishingKit(Integer id) {
+    public void deleteFishingKit(int id) {
         fishingKitRepository.delete(getFishingKitById(id));
     }
 
@@ -119,7 +119,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return modelMapper.map(fishingKit, FishingKitDto.class);
     }
 
-    private FishingKit getFishingKitById(Integer id) {
+    private FishingKit getFishingKitById(int id) {
         FishingKit fishingKit = fishingKitRepository.findById(id);
 
         if (fishingKit == null) {
@@ -128,7 +128,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return fishingKit;
     }
 
-    private Rod getRodById(Integer id) {
+    private Rod getRodById(int id) {
         Rod rod = rodRepository.findById(id);
 
         if (rod == null) {
@@ -137,7 +137,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return rod;
     }
 
-    private Reel getReelById(Integer id) {
+    private Reel getReelById(int id) {
         Reel reel = reelRepository.findById(id);
 
         if (reel == null) {
@@ -146,7 +146,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return reel;
     }
 
-    private Line getLineById(Integer id) {
+    private Line getLineById(int id) {
         Line line = lineRepository.findById(id);
 
         if (line == null) {
@@ -155,7 +155,7 @@ public class FishingKitServiceImpl implements FishingKitService {
         return line;
     }
 
-    private Lure getLureById(Integer id) {
+    private Lure getLureById(int id) {
         Lure lure = lureRepository.findById(id);
 
         if (lure == null) {

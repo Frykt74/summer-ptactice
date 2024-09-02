@@ -6,7 +6,7 @@ import org.example.fishingconfig47.entities.Reel;
 import java.util.List;
 
 public interface ReelService {
-    Reel getReelById(Integer id);
+    Reel getReelById(int id);
 
-    List<ReelDto> getReelsToMatchTheRod(Long rodId);
+    List<ReelDto> getReelsToMatchTheRod(int rodId);
 }

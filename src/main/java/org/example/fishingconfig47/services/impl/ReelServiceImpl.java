@@ -24,7 +24,7 @@ public class ReelServiceImpl implements ReelService {
         this.modelMapper = modelMapper;
     }
 
-    public Reel getReelById(Integer id) {
+    public Reel getReelById(int id) {
         Reel findReel = reelRepository.findById(id);
         if (findReel == null) {
             throw new ReelNotFoundException(id);
@@ -33,7 +33,7 @@ public class ReelServiceImpl implements ReelService {
         return findReel;
     }
 
-    public List<ReelDto> getReelsToMatchTheRod(Long rodId) {
+    public List<ReelDto> getReelsToMatchTheRod(int rodId) {
         List<Reel> findReels = reelRepository.findReelsByRodId(rodId);
 
         if (findReels.isEmpty()) {

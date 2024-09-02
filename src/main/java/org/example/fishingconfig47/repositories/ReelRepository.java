@@ -15,11 +15,11 @@ public interface ReelRepository extends
         UpdateRepository<Reel, Integer> {
     List<Reel> findReelsByGearRatioAndMaxDrag(String gearRatio, float maxDrag);
 
-    Reel findSuitableReel(String rodType, double budget);
+    Reel findSuitableReel(String rodType, float budget);
 
-    Reel findBudgetReel(double budget);
+    Reel findBudgetReel(float budget);
 
-    List<Reel> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice);
+    List<Reel> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice);
 
-    List<Reel> findReelsByRodId(Long rodId);
+    List<Reel> findReelsByRodId(int rodId);
 }

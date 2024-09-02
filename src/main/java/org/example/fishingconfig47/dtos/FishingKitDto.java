@@ -1,16 +1,16 @@
 package org.example.fishingconfig47.dtos;
 
 public class FishingKitDto {
-    private Integer id;
+    private int id;
     private String name;
-    private Integer rodId;
-    private Integer reelId;
-    private Integer lineId;
-    private Integer lureId;
-    private Float fishWeight;
-    private Integer fishCount;
+    private int rodId;
+    private int reelId;
+    private int lineId;
+    private int lureId;
+    private float fishWeight;
+    private int fishCount;
 
-    public FishingKitDto(String name, Integer rodId, Integer reelId, Integer lineId, Integer lureId, Float fishWeight, Integer fishCount) {
+    public FishingKitDto(String name, int rodId, int reelId, int lineId, int lureId, float fishWeight, int fishCount) {
         this.name = name;
         this.rodId = rodId;
         this.reelId = reelId;
@@ -27,7 +27,7 @@ public class FishingKitDto {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -43,7 +43,7 @@ public class FishingKitDto {
         return rodId;
     }
 
-    public void setRodId(Integer rodId) {
+    public void setRodId(int rodId) {
         this.rodId = rodId;
     }
 
@@ -51,7 +51,7 @@ public class FishingKitDto {
         return reelId;
     }
 
-    public void setReelId(Integer reelId) {
+    public void setReelId(int reelId) {
         this.reelId = reelId;
     }
 
@@ -59,7 +59,7 @@ public class FishingKitDto {
         return lineId;
     }
 
-    public void setLineId(Integer lineId) {
+    public void setLineId(int lineId) {
         this.lineId = lineId;
     }
 
@@ -67,7 +67,7 @@ public class FishingKitDto {
         return lureId;
     }
 
-    public void setLureId(Integer lureId) {
+    public void setLureId(int lureId) {
         this.lureId = lureId;
     }
 
@@ -75,7 +75,7 @@ public class FishingKitDto {
         return fishWeight;
     }
 
-    public void setFishWeight(Float fishWeight) {
+    public void setFishWeight(float fishWeight) {
         this.fishWeight = fishWeight;
     }
 
@@ -83,7 +83,7 @@ public class FishingKitDto {
         return fishCount;
     }
 
-    public void setFishCount(Integer fishCount) {
+    public void setFishCount(int fishCount) {
         this.fishCount = fishCount;
     }
 }

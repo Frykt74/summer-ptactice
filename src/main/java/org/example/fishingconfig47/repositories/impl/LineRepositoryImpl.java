@@ -28,7 +28,7 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
     }
 
     @Override
-    public Line findSuitableLineByMaxDragAndBudget(double maxDrag, double budget) {
+    public Line findSuitableLineByMaxDragAndBudget(float maxDrag, float budget) {
         String jpql = "SELECT l FROM Line l WHERE l.price <= :budget AND l.testWidth <= :maxDrag";
         return entityManager.createQuery(jpql, Line.class)
                 .setParameter("budget", budget)
@@ -37,7 +37,7 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
     }
 
     @Override
-    public Line findBudgetLine(double budget) {
+    public Line findBudgetLine(float budget) {
         String jpql = "SELECT l FROM Line l WHERE l.price <= :budget ORDER BY l.price DESC";
 
         TypedQuery<Line> query = entityManager.createQuery(jpql, Line.class);
@@ -48,7 +48,7 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
     }
 
     @Override
-    public List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(double maxPrice) {
+    public List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice) {
         String jpql = "SELECT l FROM Line l WHERE l.price <= :maxPrice ORDER BY l.price DESC";
 
         return entityManager.createQuery(jpql, Line.class)

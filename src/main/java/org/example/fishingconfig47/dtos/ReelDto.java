@@ -1,7 +1,7 @@
 package org.example.fishingconfig47.dtos;
 
 public class ReelDto {
-    private Integer id;
+    private int id;
     private String type;
     private String gearRatio;
     private int recovery;
@@ -30,7 +30,7 @@ public class ReelDto {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

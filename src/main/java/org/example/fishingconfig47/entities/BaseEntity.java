@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @MappedSuperclass
 public abstract class BaseEntity {
-    private Integer id;
+    private int id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

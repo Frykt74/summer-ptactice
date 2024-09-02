@@ -43,7 +43,7 @@ public class BudgetKitServiceImpl implements BudgetKitService {
     }
 
     @Override
-    public FishingKitDto selectKitByBudget(Integer budget) {
+    public FishingKitDto selectKitByBudget(int budget) {
         int rodBudget = (int) (budget * 0.58);
         int reelBudget = (int) (budget * 0.31);
         int lineBudget = (int) (budget * 0.05);

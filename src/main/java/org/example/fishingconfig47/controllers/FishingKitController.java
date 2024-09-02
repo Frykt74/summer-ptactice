@@ -29,19 +29,19 @@ public class FishingKitController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FishingKitDto> getFishingKitById(@PathVariable Integer id) {
+    public ResponseEntity<FishingKitDto> getFishingKitById(@PathVariable int id) {
         FishingKitDto fishingKit = fishingKitService.getFishingKitDtoById(id);
         return new ResponseEntity<>(fishingKit, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<FishingKitDto> updateFishingKit(@PathVariable Integer id, @RequestBody FishingKitDto fishingKitDto) {
+    public ResponseEntity<FishingKitDto> updateFishingKit(@PathVariable int id, @RequestBody FishingKitDto fishingKitDto) {
         FishingKitDto updatedFishingKit = fishingKitService.updateFishingKit(id, fishingKitDto);
         return new ResponseEntity<>(updatedFishingKit, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteFishingKit(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteFishingKit(@PathVariable int id) {
         fishingKitService.deleteFishingKit(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -59,7 +59,7 @@ public class FishingKitController {
     }
 
     @PostMapping("/budget")
-    public ResponseEntity<FishingKitDto> budgetFishingKits(@RequestBody Integer budget) {
+    public ResponseEntity<FishingKitDto> budgetFishingKits(@RequestBody int budget) {
         FishingKitDto budgetFishingKit = budgetKitService.selectKitByBudget(budget);
         return new ResponseEntity<>(budgetFishingKit, HttpStatus.OK);
     }

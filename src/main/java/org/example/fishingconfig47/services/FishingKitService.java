@@ -11,9 +11,9 @@ public interface FishingKitService {
 
     List<FishingKitDto> getAllFishingKits();
 
-    FishingKitDto getFishingKitDtoById(Integer id);
+    FishingKitDto getFishingKitDtoById(int id);
 
-    FishingKitDto updateFishingKit(Integer id, FishingKitDto fishingKitDto);
+    FishingKitDto updateFishingKit(int id, FishingKitDto fishingKitDto);
 
-    void deleteFishingKit(Integer id);
+    void deleteFishingKit(int id);
 }
