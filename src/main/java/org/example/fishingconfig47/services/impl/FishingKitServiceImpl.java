@@ -5,6 +5,7 @@ import org.example.fishingconfig47.entities.*;
 import org.example.fishingconfig47.exceptions.*;
 import org.example.fishingconfig47.repositories.*;
 import org.example.fishingconfig47.services.FishingKitService;
+import org.example.fishingconfig47.services.utils.EntityFinder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,22 +46,7 @@ public class FishingKitServiceImpl implements FishingKitService {
     }
 
     public FishingKitDto createFishingKit(FishingKitDto fishingKitDto) {
-        FishingKit fishingKit = modelMapper.map(fishingKitDto, FishingKit.class);
-
-        Rod rod = getRodById(fishingKitDto.getRodId());
-        Reel reel = getReelById(fishingKitDto.getReelId());
-
-        if (!rodReelRepository.existsRodAndReel(rod, reel)) {
-            throw new InvalidRodReelCombinationException("Катушка не подходит к удилищу");
-        }
-
-        Line line = getLineById(fishingKitDto.getLineId());
-        Lure lure = getLureById(fishingKitDto.getLureId());
-
-        fishingKit.setRod(rod);
-        fishingKit.setReel(reel, line);
-        fishingKit.setLine(line);
-        fishingKit.setLure(lure, rod);
+        FishingKit fishingKit = convertToKit(fishingKitDto);
 
         FishingKit savedFishingKit = fishingKitRepository.save(fishingKit);
         return convertToDto(savedFishingKit);
@@ -84,83 +70,51 @@ public class FishingKitServiceImpl implements FishingKitService {
     }
 
     public FishingKitDto getFishingKitDtoById(int id) {
-        FishingKit fishingKit = fishingKitRepository.findById(id);
-        if (fishingKit == null) {
-            throw new FishingKitNotFoundException(id);
-        }
+        FishingKit fishingKit = EntityFinder.findByIdOrThrow(fishingKitRepository, id, new FishingKitNotFoundException(id));
         return convertToDto(fishingKit);
     }
 
     public FishingKitDto updateFishingKit(int id, FishingKitDto fishingKitDto) {
-        FishingKit existingFishingKit = getFishingKitById(id);
 
-        Rod newRod = getRodById(fishingKitDto.getRodId());
-        Reel newReel = getReelById(fishingKitDto.getReelId());
-        Line newLine = getLineById(fishingKitDto.getLineId());
-        Lure newLure = getLureById(fishingKitDto.getLureId());
-
-        existingFishingKit.setName(fishingKitDto.getName());
-        existingFishingKit.setRod(newRod);
-        existingFishingKit.setReel(newReel, newLine);
-        existingFishingKit.setLine(newLine);
-        existingFishingKit.setLure(newLure, newRod);
-        existingFishingKit.setFishCount(fishingKitDto.getFishCount());
-        existingFishingKit.setFishWeight(fishingKitDto.getFishWeight());
-
-        FishingKit updatedFishingKit = fishingKitRepository.save(existingFishingKit);
-        return convertToDto(updatedFishingKit);
+        FishingKit existingFishingKit = EntityFinder.findByIdOrThrow(fishingKitRepository, id, new FishingKitNotFoundException(id));
+        FishingKit updatedFishingKit = convertToKit(fishingKitDto); // for validation
+        modelMapper.map(fishingKitDto, existingFishingKit);
+        FishingKit savedFishingKit = fishingKitRepository.update(existingFishingKit);
+        return convertToDto(savedFishingKit);
     }
 
     public void deleteFishingKit(int id) {
-        fishingKitRepository.delete(getFishingKitById(id));
+        fishingKitRepository.delete(
+                EntityFinder.findByIdOrThrow(fishingKitRepository, id, new RodNotFoundException(id))
+        );
     }
 
     private FishingKitDto convertToDto(FishingKit fishingKit) {
         return modelMapper.map(fishingKit, FishingKitDto.class);
     }
 
-    private FishingKit getFishingKitById(int id) {
-        FishingKit fishingKit = fishingKitRepository.findById(id);
+    private FishingKit convertToKit(FishingKitDto fishingKitDto) {
+        FishingKit fishingKit = modelMapper.map(fishingKitDto, FishingKit.class);
 
-        if (fishingKit == null) {
-            throw new FishingKitNotFoundException(id);
+        int rodId = fishingKitDto.getRodId();
+        int reelId = fishingKitDto.getReelId();
+        int lineId = fishingKitDto.getLineId();
+        int lureId = fishingKitDto.getLureId();
+
+        Rod rod = EntityFinder.findByIdOrThrow(rodRepository, rodId, new RodNotFoundException(rodId));
+        Reel reel = EntityFinder.findByIdOrThrow(reelRepository, reelId, new ReelNotFoundException(reelId));
+        Line line = EntityFinder.findByIdOrThrow(lineRepository, lineId, new LineNotFoundException(lineId));
+        Lure lure = EntityFinder.findByIdOrThrow(lureRepository, lureId, new LureNotFoundException(lureId));
+
+        if (!rodReelRepository.existsRodAndReel(rod, reel)) {
+            throw new InvalidRodReelCombinationException("Катушка не подходит к удилищу");
         }
+
+        fishingKit.setRod(rod);
+        fishingKit.setReel(reel, line);
+        fishingKit.setLine(line);
+        fishingKit.setLure(lure, rod);
+
         return fishingKit;
-    }
-
-    private Rod getRodById(int id) {
-        Rod rod = rodRepository.findById(id);
-
-        if (rod == null) {
-            throw new RodNotFoundException(id);
-        }
-        return rod;
-    }
-
-    private Reel getReelById(int id) {
-        Reel reel = reelRepository.findById(id);
-
-        if (reel == null) {
-            throw new ReelNotFoundException(id);
-        }
-        return reel;
-    }
-
-    private Line getLineById(int id) {
-        Line line = lineRepository.findById(id);
-
-        if (line == null) {
-            throw new LineNotFoundException(id);
-        }
-        return line;
-    }
-
-    private Lure getLureById(int id) {
-        Lure lure = lureRepository.findById(id);
-
-        if (lure == null) {
-            throw new LureNotFoundException(id);
-        }
-        return lure;
     }
 }
