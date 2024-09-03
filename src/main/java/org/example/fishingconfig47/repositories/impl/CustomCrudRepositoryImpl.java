@@ -27,6 +27,7 @@ public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> impleme
     }
 
     @Override
+    @Transactional
     public void delete(T entity) {
         if (entityManager.contains(entity)) {
             entityManager.remove(entity);
@@ -36,6 +37,7 @@ public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> impleme
     }
 
     @Override
+    @Transactional
     public void deleteById(ID id) {
         T entity = entityManager.find(entityClass, id);
         if (entity != null) {
@@ -55,6 +57,7 @@ public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> impleme
     }
 
     @Override
+    @Transactional
     public <S extends T> S update(S entity) {
         return entityManager.merge(entity);
     }
