@@ -9,7 +9,7 @@ public class FishingKitNotFoundException extends ResourceNotFoundException {
         super("Fishing Kit not found");
     }
 
-    public FishingKitNotFoundException(Integer id) {
+    public FishingKitNotFoundException(int id) {
         super("Fishing Kit with id " + id + " not found");
     }
 }

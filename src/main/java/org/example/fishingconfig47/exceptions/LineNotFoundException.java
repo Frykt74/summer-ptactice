@@ -6,7 +6,7 @@ public class LineNotFoundException extends ResourceNotFoundException {
         super(message);
     }
 
-    public LineNotFoundException(Integer id) {
+    public LineNotFoundException(int id) {
         super("Line with id " + id + " not found");
     }
 

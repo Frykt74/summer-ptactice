@@ -6,7 +6,7 @@ public class RodNotFoundException extends ResourceNotFoundException {
         super(message);
     }
 
-    public RodNotFoundException(Integer id) {
+    public RodNotFoundException(int id) {
         super("Rod with id " + id + " not found");
     }
 

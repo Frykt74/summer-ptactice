@@ -6,7 +6,7 @@ public class LureNotFoundException extends ResourceNotFoundException {
         super(message);
     }
 
-    public LureNotFoundException(Integer id) {
+    public LureNotFoundException(int id) {
         super("Lure with id " + id + " not found");
     }
 
