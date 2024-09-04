@@ -11,6 +11,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @NoRepositoryBean
 public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> implements
@@ -46,8 +47,8 @@ public abstract class CustomCrudRepositoryImpl<T extends BaseEntity, ID> impleme
     }
 
     @Override
-    public T findById(ID id) {
-        return entityManager.find(entityClass, id);
+    public Optional<T> findById(ID id) {
+        return Optional.ofNullable(entityManager.find(entityClass, id));
     }
 
     @Override

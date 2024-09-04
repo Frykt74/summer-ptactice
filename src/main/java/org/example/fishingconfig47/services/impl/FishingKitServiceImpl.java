@@ -5,7 +5,6 @@ import org.example.fishingconfig47.entities.*;
 import org.example.fishingconfig47.exceptions.*;
 import org.example.fishingconfig47.repositories.*;
 import org.example.fishingconfig47.services.FishingKitService;
-import org.example.fishingconfig47.services.utils.EntityFinder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,14 +69,16 @@ public class FishingKitServiceImpl implements FishingKitService {
     }
 
     public FishingKitDto getFishingKitDtoById(int id) {
-        FishingKit fishingKit = EntityFinder.findByIdOrThrow(fishingKitRepository, id, new FishingKitNotFoundException(id));
+        FishingKit fishingKit = fishingKitRepository.findById(id)
+                .orElseThrow(() -> new FishingKitNotFoundException(id));
         return convertToDto(fishingKit);
     }
 
     public FishingKitDto updateFishingKit(int id, FishingKitDto fishingKitDto) {
+        FishingKit existingFishingKit = fishingKitRepository.findById(id)
+                .orElseThrow(() -> new FishingKitNotFoundException(id));
 
-        FishingKit existingFishingKit = EntityFinder.findByIdOrThrow(fishingKitRepository, id, new FishingKitNotFoundException(id));
-        FishingKit updatedFishingKit = convertToKit(fishingKitDto); // for validation
+        FishingKit updatedFishingKit = convertToKit(fishingKitDto); // for validation data in dto
         modelMapper.map(fishingKitDto, existingFishingKit);
         FishingKit savedFishingKit = fishingKitRepository.update(existingFishingKit);
         return convertToDto(savedFishingKit);
@@ -85,7 +86,8 @@ public class FishingKitServiceImpl implements FishingKitService {
 
     public void deleteFishingKit(int id) {
         fishingKitRepository.delete(
-                EntityFinder.findByIdOrThrow(fishingKitRepository, id, new RodNotFoundException(id))
+                fishingKitRepository.findById(id)
+                        .orElseThrow(() -> new FishingKitNotFoundException(id))
         );
     }
 
@@ -101,10 +103,10 @@ public class FishingKitServiceImpl implements FishingKitService {
         int lineId = fishingKitDto.getLineId();
         int lureId = fishingKitDto.getLureId();
 
-        Rod rod = EntityFinder.findByIdOrThrow(rodRepository, rodId, new RodNotFoundException(rodId));
-        Reel reel = EntityFinder.findByIdOrThrow(reelRepository, reelId, new ReelNotFoundException(reelId));
-        Line line = EntityFinder.findByIdOrThrow(lineRepository, lineId, new LineNotFoundException(lineId));
-        Lure lure = EntityFinder.findByIdOrThrow(lureRepository, lureId, new LureNotFoundException(lureId));
+        Rod rod = rodRepository.findById(rodId).orElseThrow(() -> new RodNotFoundException(rodId));
+        Reel reel = reelRepository.findById(reelId).orElseThrow(() -> new ReelNotFoundException(reelId));
+        Line line = lineRepository.findById(lineId).orElseThrow(() -> new LineNotFoundException(lineId));
+        Lure lure = lureRepository.findById(lureId).orElseThrow(() -> new LureNotFoundException(lureId));
 
         if (!rodReelRepository.existsRodAndReel(rod, reel)) {
             throw new InvalidRodReelCombinationException("Катушка не подходит к удилищу");
