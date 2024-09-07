@@ -26,7 +26,7 @@ public class ReelDto {
     protected ReelDto() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 

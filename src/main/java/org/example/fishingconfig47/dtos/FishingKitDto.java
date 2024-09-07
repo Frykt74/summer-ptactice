@@ -23,7 +23,7 @@ public class FishingKitDto {
     protected FishingKitDto() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class FishingKitDto {
         this.name = name;
     }
 
-    public Integer getRodId() {
+    public int getRodId() {
         return rodId;
     }
 
@@ -47,7 +47,7 @@ public class FishingKitDto {
         this.rodId = rodId;
     }
 
-    public Integer getReelId() {
+    public int getReelId() {
         return reelId;
     }
 
@@ -55,7 +55,7 @@ public class FishingKitDto {
         this.reelId = reelId;
     }
 
-    public Integer getLineId() {
+    public int getLineId() {
         return lineId;
     }
 
@@ -63,7 +63,7 @@ public class FishingKitDto {
         this.lineId = lineId;
     }
 
-    public Integer getLureId() {
+    public int getLureId() {
         return lureId;
     }
 
@@ -71,7 +71,7 @@ public class FishingKitDto {
         this.lureId = lureId;
     }
 
-    public Float getFishWeight() {
+    public float getFishWeight() {
         return fishWeight;
     }
 
@@ -79,7 +79,7 @@ public class FishingKitDto {
         this.fishWeight = fishWeight;
     }
 
-    public Integer getFishCount() {
+    public int getFishCount() {
         return fishCount;
     }
 
