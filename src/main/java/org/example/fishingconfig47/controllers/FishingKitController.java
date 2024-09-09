@@ -63,4 +63,10 @@ public class FishingKitController {
         FishingKitDto budgetFishingKit = budgetKitService.selectKitByBudget(budget);
         return new ResponseEntity<>(budgetFishingKit, HttpStatus.OK);
     }
+
+    @GetMapping("/{kitId}/check-strength")
+    public ResponseEntity<String> checkKitStrength(@PathVariable int kitId, @RequestParam float fishWeight) {
+        String result = fishingKitService.checkKitStrength(kitId, fishWeight);
+        return ResponseEntity.ok(result);
+    }
 }

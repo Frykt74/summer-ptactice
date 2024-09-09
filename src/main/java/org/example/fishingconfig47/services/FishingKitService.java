@@ -16,4 +16,6 @@ public interface FishingKitService {
     FishingKitDto updateFishingKit(int id, FishingKitDto fishingKitDto);
 
     void deleteFishingKit(int id);
+
+    String checkKitStrength(int kitId, float fishWeight);
 }

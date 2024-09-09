@@ -20,4 +20,6 @@ public interface LineRepository extends
     Line findBudgetLine(float budget);
 
     List<Line> findTop4ByPriceLessThanEqualOrderByPriceDesc(float maxPrice);
+
+    Line findLineByWeight(float fishWeight);
 }

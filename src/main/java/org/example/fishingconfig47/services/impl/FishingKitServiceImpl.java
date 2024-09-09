@@ -91,6 +91,30 @@ public class FishingKitServiceImpl implements FishingKitService {
         );
     }
 
+    public String checkKitStrength(int kitId, float fishWeight) {
+        FishingKit kit = fishingKitRepository.findById(kitId)
+                .orElseThrow(() -> new FishingKitNotFoundException(kitId));
+
+        Line currentLine = kit.getLine();
+
+        if (currentLine.getTestWidth() >= fishWeight) {
+            return "Леска выдержит рыбу такого веса";
+        }
+
+        Line strongerLine = lineRepository.findLineByWeight(fishWeight);
+
+        if (strongerLine == null) {
+            return "Для такого веса лески нет";
+        }
+
+        if (strongerLine.getTestWidth() > kit.getReel().getMaxDrag()) {
+            return "Вам лучше приобрести новую катушку или собрать новый набор";
+        }
+
+        return "Вы можете использовать более прочную леску: " + strongerLine.getName() +
+                ", она выдержит: " + strongerLine.getTestWidth() + " кг";
+    }
+
     private FishingKitDto convertToDto(FishingKit fishingKit) {
         return modelMapper.map(fishingKit, FishingKitDto.class);
     }

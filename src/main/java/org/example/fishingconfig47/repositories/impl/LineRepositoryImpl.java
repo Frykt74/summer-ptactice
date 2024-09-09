@@ -56,4 +56,14 @@ public class LineRepositoryImpl extends CustomCrudRepositoryImpl<Line, Integer> 
                 .setMaxResults(4)
                 .getResultList();
     }
+
+    public Line findLineByWeight(float fishWeight) {
+        String jpql = "SELECT l FROM Line l WHERE l.testWidth >= :fishWeight ORDER BY l.testWidth ASC";
+        List<Line> result = entityManager.createQuery(jpql, Line.class)
+                .setParameter("fishWeight", fishWeight)
+                .setMaxResults(1)
+                .getResultList();
+
+        return result.isEmpty() ? null : result.get(0);
+    }
 }
